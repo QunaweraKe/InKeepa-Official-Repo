@@ -1,0 +1,22 @@
+export const SIGNIN_API = `${process.env.REACT_APP_BACKEND_API}/signin/`;
+export const SIGNUP_API = `${process.env.REACT_APP_BACKEND_API}/signup/`;
+export const SIGNOUT_API = `${process.env.REACT_APP_BACKEND_API}/signout/`;
+export const SALES_API = `${process.env.REACT_APP_BACKEND_API}/salesapi/`;
+export const HELP_API = `${process.env.REACT_APP_BACKEND_API}/helpapi/`;
+export const USER_DETAIL_API = `${process.env.REACT_APP_BACKEND_API}/me/`;
+export const USER_DEACTIVATE_API = `${process.env.REACT_APP_BACKEND_API}/me/deactivate/`;
+
+export const TOKEN_REFRESH_API = `${process.env.REACT_APP_BACKEND_API}/token/refresh/`;
+
+export const MY_CART_API = `${process.env.REACT_APP_BACKEND_API}/me/cart/`;
+
+export const NURSERY_ORDERS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/nursery/orders/`;
+
+export const MY_ORDERS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/me/orders/`;
+export const ORDER_CREATE_API = `${process.env.REACT_APP_BACKEND_API}/me/order/create/`;
+export const ORDER_API = `${process.env.REACT_APP_BACKEND_API}/me/order/`;
+
+export const SHOPS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/shops/`;
+export const MY_SHOP_API = `${process.env.REACT_APP_BACKEND_API}/shop/`;
+
+export const ITEMS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/items/`;
