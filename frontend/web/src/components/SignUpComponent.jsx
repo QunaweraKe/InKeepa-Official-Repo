@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Redirect, useHistory } from "react-router-dom";
 //material ui
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -19,6 +20,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Copyright from "../layouts/Copyright";
 import { signUp } from "../store/actions/auth";
 import { routes } from "../Routes";
+import  TermsOfService  from "./TermsAndPrivacyComponent/TermsOfService";
 
 
 
@@ -210,6 +212,8 @@ endIcon={isUiLoading && <CircularProgress size={20} />}
           >
             Sign Up
           </Button>
+          <Typography  variant="body" align ="center" color="secondary">By Signing In you agree to our and Privacy Policy</Typography>
+          
           <Grid container justify="flex-end">
                 <Grid item>
                   <Link
