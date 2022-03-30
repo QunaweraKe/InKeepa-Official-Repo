@@ -1,4 +1,9 @@
 import React from "react";
+import { useHistory } from 'react-router-dom';
+
+// Material UI
+
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -20,7 +25,7 @@ import Empty from "../../assets/img/empty.svg";
 import NoImage from "../../assets/img/oops-no-image.jpg";
 import { emptyCart, removeItemFromCart } from "../../store/actions/cart";
 import { createOrder } from "../../store/actions/orders";
-
+import CommaFunct from "../../constant";
 const initialCredentials = {
 
   table_id: null,
@@ -80,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 function CartComponent(props) {
   const [open, setOpen] = React.useState(false);
+  const history = useHistory();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -125,10 +131,12 @@ function CartComponent(props) {
                 alt="not available"
               />
               <div className={classes.itemDetail}>
-                <Typography variant="h5">{item.name}</Typography>
-                <Typography variant="h4">Ksh {item.price}</Typography>
+                <Typography variant="h4"><i>Item Name</i> &#x3A; {item.name}</Typography>
+                <Typography variant="subtitle1"><i>Price</i> &#x3A; Ksh {CommaFunct(item.price)}</Typography>
                 <Button
+                    style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                   size="small"
+                  variant="contained"
                   color="secondary"
                   onClick={() => handleDeleteItem(item.id)}
                   startIcon={<DeleteIcon />}
@@ -151,6 +159,14 @@ function CartComponent(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={2}>
           <Grid item xs={12}>
+          <Button
+          style={{marginBottom:5,}}
+      variant="contained"
+      color="secondary"
+      onClick={() => history.goBack()}
+    >
+      < KeyboardBackspaceIcon />Back
+    </Button>
             <Typography style={{fontWeight:"bold"}}variant="h4" align="center">
               Menu Check
             </Typography>
@@ -169,15 +185,20 @@ function CartComponent(props) {
                       {renderItems()}
                     </CardContent>
                     <CardActions className={classes.cardActions}>
+                    {items.length > 1 ? (
                       <Button
                         size="small"
                         color="secondary"
                         onClick={handleEmptyCart}
                         variant="contained"
                         disabled={isUiLoading}
+                        style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                       >
-                        Clear
+                        Clear All
                       </Button>
+                    ):(
+                      <></>
+                    )}
                     </CardActions>
                   </>
                 ) : (
@@ -208,7 +229,7 @@ function CartComponent(props) {
                 <Typography style={{fontSize:15}}>
                   
                   {items.length} Item(s)</Typography>
-                  <Typography variant="h3">Ksh {totalPrice}</Typography>
+                  <Typography variant="h3">Ksh {CommaFunct(totalPrice)}</Typography>
                   <Divider />
                 </CardContent>
                 <CardActions>

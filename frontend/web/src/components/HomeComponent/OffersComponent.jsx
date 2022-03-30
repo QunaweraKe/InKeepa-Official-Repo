@@ -118,7 +118,7 @@ function OffersComponent(props) {
               md={4}
               className={classes.item}
             >
-                  {item.available  ? (
+                  {item.offers && item.available ? (
                     <>
               <Card  style={cardStyle} className={classes.card}>
                 <CardMedia
@@ -183,29 +183,7 @@ function OffersComponent(props) {
               ) : (
                 <>
                   
-              <Card  style={cardStyle} className={classes.card}>
-              <CardMedia
-                className={classes.cardMedia}
-                image={item.image || NoImage}
-                title="Image title"
-                style={{filter:"blur(5px)",}}
-              />
-              <CardContent className={classes.cardContent}>
-                <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
-                  Ksh. {item.price.toLocaleString()}
-                </Typography>
-                <Divider/>
-                <Typography style={{fontWeight:600,fontSize:16,marginTop:5,}}>{item.name}</Typography>
-               
-            
-              </CardContent>
-            
-            </Card>
-              <CardActions>
-              <Typography align="" color="textSecondary" style={{fontFamily:"monospace",fontWeight:"bold"}}>
-               <i> Currently Unavailable</i>
-              </Typography>
-              </CardActions>
+              
               </>
               
     )}

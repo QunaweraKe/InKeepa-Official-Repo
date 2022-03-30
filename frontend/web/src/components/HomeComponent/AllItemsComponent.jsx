@@ -105,7 +105,7 @@ function AllItemsComponent(props) {
      
       <Container className={classes.cardGrid} maxWidth="md">
         {/* End hero unit */}
-        <Grid container spacing={6}>
+        <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography className={classes.top} color="textSecondary" variant="h3">Today</Typography>
           </Grid>
@@ -144,15 +144,15 @@ function AllItemsComponent(props) {
               <CardActions>
                   {cartItems.includes(item.id) ? (
                     <Button
-                    variant="outlined"
                     
-                    style={{fontSize:12,color:"#FF1818",}}
+                    variant="contained"
+                    style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                       size="small"
                       fullWidth
                       onClick={() => handleRemoveItemFromCart(item.id)}
                       disabled={isUiLoading}
                     >
-                      Remove
+                      Remove Item
                     </Button>
                   ) : (<>
                     <Button

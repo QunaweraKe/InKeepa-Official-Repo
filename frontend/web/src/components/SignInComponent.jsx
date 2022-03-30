@@ -65,7 +65,7 @@ function SignInComponent(props)  {
 
   const classes = useStyles();
   const history = useHistory();
-
+  const[disabled,setDisabled]=React.useState(true);
   const [credentials, setCredentials] = React.useState(initialCredentials);
   const { isAuthenticated, isUiLoading, signIn } = props;
 
@@ -79,15 +79,21 @@ signIn(email, password);
 }
 };
 
+
+
+
 const handleInputChange = (event) => {
   const value = event.target.type !== 'checkbox'
     ? event.target.value
     : event.target.checked;
+    
     setCredentials((prevState)=>({
     ...prevState,
     [event.target.name]: value,
   }));
+  setDisabled(false);
 };
+
 
 const handleRouteClick = (route) => {
 history.push(route);
@@ -113,6 +119,7 @@ alt="null"
       <form
 className={classes.form}
 noValidate
+autoComplete="off"
 onSubmit={handleFormSubmit}
 >
           <TextField
@@ -179,9 +186,12 @@ onSubmit={handleFormSubmit}
 fullWidth
 variant="contained"
 color="secondary"
-disabled={isUiLoading}
+//disabled={isUiLoading}
 className={classes.submit}
 endIcon={isUiLoading && <CircularProgress size={20} />}
+//disabled={disabled|| isUiLoading}
+disabled={disabled }
+
           >
             Sign In
           </Button>
