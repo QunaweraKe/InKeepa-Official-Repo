@@ -25,7 +25,7 @@ export const GET_CART = "GET_CART";
 export const ADD_ITEM_TO_CART = "ADD_ITEM_TO_CART";
 export const REMOVE_ITEM_FROM_CART = "REMOVE_ITEM_FROM_CART";
 export const EMPTY_CART = "EMPTY_CART";
-
+export const GET_OFFERS = "GET_OFFERS";
 export const GET_ITEMS = "GET_ITEMS";
 export const GET_SHOPS = "GET_SHOPS";
 export const GET_ORDERS = "GET_ORDERS";

@@ -37,7 +37,7 @@ schema_view = get_redoc_schema(
 )
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin@inkeepa/", admin.site.urls),
     path(
         "openapi",
         get_schema_view(title="Inkeepa", version="1.0.0"),

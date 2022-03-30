@@ -34,7 +34,9 @@ class CategoryAPIView(APIView):
 
 
 class OffersAPIView(ListAPIView):
-    queryset = Item.objects.filter(offers=True, available=True)
+    queryset = Item.objects.filter(
+        soft_delete=False, offers=True, available=True
+    ).order_by("-added_on")
     serializer_class = ItemSerializer
     permission_classes = (permissions.IsAuthenticated,)
 

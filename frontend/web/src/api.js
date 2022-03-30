@@ -20,3 +20,5 @@ export const SHOPS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/shops/`;
 export const MY_SHOP_API = `${process.env.REACT_APP_BACKEND_API}/shop/`;
 
 export const ITEMS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/items/`;
+export const OFFERS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/offers/`;
+export const CATEGORY_LIST_API = `${process.env.REACT_APP_BACKEND_API}/category/`;
