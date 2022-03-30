@@ -1,8 +1,9 @@
 # from django.shortcuts import render
 
-# from rest_framework import viewsets, status
-# from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import permissions
 from rest_framework.generics import (
     RetrieveUpdateDestroyAPIView,
     RetrieveUpdateAPIView,
@@ -20,6 +21,22 @@ from core.serializers import (
 )
 
 # Create your views here.
+class CategoryAPIView(APIView):
+    serializer_class = ItemSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, format=None):
+        category_data = request.data
+        category = category_data["category"]
+        qs = Item.objects.filter(category__iexact=category)
+        serializer = ItemSerializer(qs, many=True)
+        return Response(serializer.category_data)
+
+
+class OffersAPIView(ListAPIView):
+    queryset = Item.objects.filter(offers=True, available=True)
+    serializer_class = ItemSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class CartRetrieveUpdateAPIView(RetrieveUpdateAPIView):

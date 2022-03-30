@@ -35,6 +35,7 @@ class ItemAdmin(admin.ModelAdmin):
         queryset.update(available=True)
 
     make_available_selected_post.short_description = "Make Item(s) Available"
+    search_fields = ("name",)
 
     list_display = (
         "id",
@@ -42,6 +43,7 @@ class ItemAdmin(admin.ModelAdmin):
         "description",
         "image",
         "price",
+        "offers",
         "shop",
         "added_by",
         "added_on",

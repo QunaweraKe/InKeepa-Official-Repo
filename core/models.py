@@ -51,6 +51,7 @@ class Category(models.Model):
 
 
 class Item(models.Model):
+    offers = models.BooleanField(default=False)
     category = models.ForeignKey("core.Category", on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000, editable=True)
@@ -74,6 +75,14 @@ class Item(models.Model):
                 image_var.save(self.image.path)
         except:
             pass
+        if self.offers:
+            try:
+                new = Item.objects.all()
+                if self != new:
+                    new.offers = False
+                    new.update()
+            except Item.DoesNotExist:
+                pass
 
     def __str__(self):
         return self.name

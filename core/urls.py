@@ -14,10 +14,14 @@ from core.views import (
     ItemsListAPIView,
     ItemsCreateAPIView,
     ItemRetrieveUpdateDestroyAPIView,
+    CategoryAPIView,
+    OffersAPIView,
 )
 
 
 urlpatterns = [
+    path("api/offers/", OffersAPIView.as_view()),
+    path("api/category/", CategoryAPIView.as_view()),
     path("api/me/cart/", CartRetrieveUpdateAPIView.as_view()),
     path("api/me/orders/", OrdersListAPIView.as_view()),
     path("api/me/order/create/", OrderCreateAPIView.as_view()),
