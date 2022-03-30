@@ -131,8 +131,8 @@ function CartComponent(props) {
                 alt="not available"
               />
               <div className={classes.itemDetail}>
-                <Typography variant="h4"><i>Item Name</i> &#x3A; {item.name}</Typography>
-                <Typography variant="subtitle1"><i>Price</i> &#x3A; Ksh {CommaFunct(item.price)}</Typography>
+                <Typography  color="textSecondary" variant="h4"> {item.name}</Typography>
+                <Typography color="textSecondary" variant="subtitle1"><i>Price</i> &#x3A; Ksh {CommaFunct(item.price)}</Typography>
                 <Button
                     style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                   size="small"
