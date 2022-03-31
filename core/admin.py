@@ -17,6 +17,12 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
+    def get_actions(self, request):
+        actions = super(ItemAdmin, self).get_actions(request)
+        if request.user.is_superuser != False:
+            del actions["delete_selected"]
+        return actions
+
     def get_queryset(self, request):
         qs = super(ItemAdmin, self).get_queryset(request)
         return qs.filter(soft_delete=False)
@@ -128,13 +134,43 @@ admin.site.register(OrdersToday, OrdersByDay)
 class OrdersRequestedCancellation(Order):
     class Meta:
         proxy = True
-        verbose_name_plural = "Cancellation Order Requests"
+        verbose_name_plural = "Order Cancel Requests"
 
 
 class OrdersRequested(OrderAdmin):
     def get_queryset(self, request):
         qs = super(OrderAdmin, self).get_queryset(request)
-        return qs.filter(is_active=False)
+        return qs.filter(is_active=False, status=0)
 
 
 admin.site.register(OrdersRequestedCancellation, OrdersRequested)
+
+
+class CancelledOrders(Order):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "Cancelled Orders"
+
+
+class OrdersCancelled(OrderAdmin):
+    def get_queryset(self, request):
+        qs = super(OrderAdmin, self).get_queryset(request)
+        return qs.filter(status=2)
+
+
+admin.site.register(CancelledOrders, OrdersCancelled)
+
+
+class AcceptedOrders(Order):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "Accepted Orders"
+
+
+class OrdersAccepted(OrderAdmin):
+    def get_queryset(self, request):
+        qs = super(OrderAdmin, self).get_queryset(request)
+        return qs.filter(status=1, is_active=True)
+
+
+admin.site.register(AcceptedOrders, OrdersAccepted)
