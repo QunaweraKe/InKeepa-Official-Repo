@@ -1,9 +1,8 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
 
 // Material UI
 
-import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
+
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -26,6 +25,7 @@ import NoImage from "../../assets/img/oops-no-image.jpg";
 import { emptyCart, removeItemFromCart } from "../../store/actions/cart";
 import { createOrder } from "../../store/actions/orders";
 import CommaFunct from "../../constant";
+import BackButton from "../../layouts/BackButton";
 const initialCredentials = {
 
   table_id: null,
@@ -85,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
 
 function CartComponent(props) {
   const [open, setOpen] = React.useState(false);
-  const history = useHistory();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -159,14 +158,7 @@ function CartComponent(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={2}>
           <Grid item xs={12}>
-          <Button
-          style={{marginBottom:5,}}
-      variant="contained"
-      color="secondary"
-      onClick={() => history.goBack()}
-    >
-      < KeyboardBackspaceIcon />Back
-    </Button>
+        <BackButton/>
             <Typography style={{fontWeight:"bold"}}variant="h4" align="center">
               Menu Check
             </Typography>

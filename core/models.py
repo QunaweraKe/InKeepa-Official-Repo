@@ -1,4 +1,3 @@
-from tabnanny import verbose
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
@@ -51,7 +50,7 @@ class Category(models.Model):
 
 
 class Item(models.Model):
-    offers = models.BooleanField(default=False)
+    offers = models.BooleanField(default=False, verbose_name="On_Offer")
     category = models.ForeignKey("core.Category", on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000, editable=True)

@@ -152,7 +152,7 @@ function AllItemsComponent(props) {
                     <>
                      <Chip  label="Added" style={{fontFamily:"monospace",fontWeight:"bold"}} />
                     <IconButton
-                    
+                    style={{color:"#FD5D5D"}}
                     variant="contained"
                       size="small"
                       fullWidth
