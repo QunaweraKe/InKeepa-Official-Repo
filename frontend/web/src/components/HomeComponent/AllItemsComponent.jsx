@@ -13,11 +13,13 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import PropTypes from "prop-types";
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from "@material-ui/core/styles";
+import Chip from "@material-ui/core/Chip";
 
 
 //local imports
+import OffersComponent from "./OffersComponent";
 import ProductDetailsComponent from "./ProductDetailsComponent";
 import NoImage from "../../assets/img/oops-no-image.jpg";
 import CommaFunct from "../../constant";
@@ -68,7 +70,6 @@ const useStyles = makeStyles((theme) => ({
 function AllItemsComponent(props) {
   const classes = useStyles();
 
-
   const {
     items,
     cartItems,
@@ -91,7 +92,7 @@ function AllItemsComponent(props) {
   const handleRemoveItemFromCart = (itemId) => {
     removeItemFromCart(itemId);
   };
-
+  
   const handleBuyNow = (itemId) => {
     createOrder([itemId]);
   };
@@ -106,9 +107,17 @@ function AllItemsComponent(props) {
       <Container className={classes.cardGrid} maxWidth="md">
         {/* End hero unit */}
         <Grid container spacing={2}>
+       
           <Grid item xs={12}>
+            
             <Typography className={classes.top} color="textSecondary" variant="h3">Today</Typography>
           </Grid>
+          <Grid item xs={12}>
+        
+<OffersComponent/>
+          </Grid>
+
+     
           {items.map((item, index) => (
             <Grid
               item
@@ -133,27 +142,26 @@ function AllItemsComponent(props) {
                   <Divider/>
                   <Typography style={{fontWeight:600,fontSize:16,marginTop:5,}}>{item.name}</Typography>
                   
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-      
+  
               
                 </CardContent>
                
               </Card>
               <CardActions>
                   {cartItems.includes(item.id) ? (
-                    <Button
+                    <>
+                     <Chip  label="Added" style={{fontFamily:"monospace",fontWeight:"bold"}} />
+                    <IconButton
                     
                     variant="contained"
-                    style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                       size="small"
                       fullWidth
                       onClick={() => handleRemoveItemFromCart(item.id)}
                       disabled={isUiLoading}
                     >
-                      Remove Item
-                    </Button>
+                      <DeleteIcon/>
+                    </IconButton>
+                    </>
                   ) : (<>
                     <Button
                     

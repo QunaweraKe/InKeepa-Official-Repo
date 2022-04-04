@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 //material Ui
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,11 +12,14 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import PropTypes from "prop-types";
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import { makeStyles } from "@material-ui/core/styles";
-
-
+import Dialog from '@material-ui/core/Dialog';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import Chip from '@material-ui/core/Chip';
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from '@material-ui/icons/Delete';
 //local imports
+import FloatingAction from "../../layouts/FloatingAction";
 import ProductDetailsComponent from "./ProductDetailsComponent";
 import NoImage from "../../assets/img/oops-no-image.jpg";
 import CommaFunct from "../../constant";
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
   top:{
     marginTop:12,
-    padding:6,
+    padding:4,
     fontWeight:600,
     lineHeight:1,
   },
@@ -57,8 +59,14 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     flexGrow: 1,
   },
+  dialogHeight: {
+    height: "80%",
+    bottom:0,
+    overflow:"scroll",
+    backgroundColor:theme.palette.grey[100]
+  },
   item: {
-    marginBottom: theme.spacing(5),
+    marginBottom: theme.spacing(),
   },
   pricetag:{
     color:theme.palette.grey[500]
@@ -68,7 +76,15 @@ const useStyles = makeStyles((theme) => ({
 function OffersComponent(props) {
   const classes = useStyles();
 
+  const [open, setOpen] = React.useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const {
     items,
     cartItems,
@@ -102,13 +118,26 @@ function OffersComponent(props) {
 }
   return (
     <>
-     
+        <Chip 
+          icon={  <WhatshotIcon />}
+           label="offers" onClick={handleClickOpen}  clickable />
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        fullScreen
+        classes={{ paper: classes.dialogHeight }}
+        
+      
+      >
+      
       <Container className={classes.cardGrid} maxWidth="md">
+        <FloatingAction/>
         {/* End hero unit */}
         <Grid container spacing={6}>
           <Grid item xs={12}>
-            <Typography className={classes.top} color="textSecondary" variant="h3">Offers</Typography>
+            <Typography className={classes.top} color="textSecondary" variant="subtitle1"> Available Offers</Typography>
           </Grid>
+         
           {items.map((item, index) => (
             <Grid
               item
@@ -118,7 +147,7 @@ function OffersComponent(props) {
               md={4}
               className={classes.item}
             >
-                  {item.offers && item.available ? (
+                  {item.offers && item.available  && (
                     <>
               <Card  style={cardStyle} className={classes.card}>
                 <CardMedia
@@ -130,12 +159,13 @@ function OffersComponent(props) {
                   <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
                     Ksh. {CommaFunct(item.price)}
                   </Typography>
+                  <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
+                    Ksh. {CommaFunct(item.offerprice)}
+                  </Typography>
                   <Divider/>
                   <Typography style={{fontWeight:600,fontSize:16,marginTop:5,}}>{item.name}</Typography>
                   
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+      
       
               
                 </CardContent>
@@ -143,17 +173,19 @@ function OffersComponent(props) {
               </Card>
               <CardActions>
                   {cartItems.includes(item.id) ? (
-                    <Button
-                    variant="outlined"
-                    
-                    style={{fontSize:12,color:"#FF1818",}}
-                      size="small"
-                      fullWidth
-                      onClick={() => handleRemoveItemFromCart(item.id)}
-                      disabled={isUiLoading}
-                    >
-                      Remove
-                    </Button>
+                  <>
+                  <Chip  label="Added" style={{fontFamily:"monospace",fontWeight:"bold"}} />
+                 <IconButton
+                 
+                 variant="contained"
+                   size="small"
+                   fullWidth
+                   onClick={() => handleRemoveItemFromCart(item.id)}
+                   disabled={isUiLoading}
+                 >
+                   <DeleteIcon/>
+                 </IconButton>
+                 </>
                   ) : (<>
                     <Button
                     
@@ -179,18 +211,13 @@ function OffersComponent(props) {
                 </CardActions>
           
           </>
-           
-              ) : (
-                <>
-                  
-              
-              </>
               
     )}
             </Grid>
           ))}
         </Grid>
       </Container>
+      </Dialog>
    
    
     </>

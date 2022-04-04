@@ -132,7 +132,7 @@ function CartComponent(props) {
               />
               <div className={classes.itemDetail}>
                 <Typography  color="textSecondary" variant="h4"> {item.name}</Typography>
-                <Typography color="textSecondary" variant="subtitle1"><i>Price</i> &#x3A; Ksh {CommaFunct(item.price)}</Typography>
+                <Typography color="textSecondary" variant="subtitle1"><i>Price</i> &middot; Ksh {CommaFunct(item.price)}</Typography>
                 <Button
                     style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                   size="small"

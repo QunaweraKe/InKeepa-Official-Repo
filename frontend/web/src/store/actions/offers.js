@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { OFFERS_LIST_API } from "../../api";
 import {
-  GET_ITEMS,
+  GET_OFFERS,
   UI_LOADING_START,
   UI_LOADING_END,
   UNAUTHORIZED_ACCESS,
@@ -24,7 +24,7 @@ export const getOffers = () => (dispatch, getState) => {
     .get(OFFERS_LIST_API, tokenConfig(accessToken))
     .then((res) => {
       dispatch({
-        type: GET_ITEMS,
+        type: GET_OFFERS,
         payload: res.data,
       });
       // End Loading the UI

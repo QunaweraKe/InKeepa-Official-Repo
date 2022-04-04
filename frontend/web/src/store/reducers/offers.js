@@ -1,7 +1,7 @@
 import { GET_OFFERS } from "../actions/types";
 
 const initialState = {
-  items: [],
+  offers: [],
 };
 
 export default function offersReducer(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function offersReducer(state = initialState, action) {
     case GET_OFFERS:
       return {
         ...state,
-        items: action.payload,
+        offers: action.payload,
       };
     default:
       return state;

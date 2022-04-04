@@ -23,7 +23,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import clsx from "clsx";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
-
+import CommaFunct from "../../constant";
 import NoImage from "../../assets/img/oops-no-image.jpg";
 import { getOrders, cancelOrder } from "../../store/actions/orders";
 
@@ -76,7 +76,7 @@ function OrdersComponent(props) {
               />
               <div className={classes.itemDetail}>
                 <Typography variant="h6">{item.name}</Typography>
-                <Typography variant="h5">Ksh {item.price.toLocaleString()}</Typography>
+                <Typography variant="h5">Ksh {CommaFunct(item.price)}</Typography>
               </div>
             </div>
             <Divider />
@@ -126,7 +126,7 @@ function OrdersComponent(props) {
                     <Chip label="Cancelled" className={classestwo.chip} style={{backgroundColor:'#F68989'}}/>
                   )
                   }
-                  <Typography variant="h4">Ksh.{order.total_ammount}</Typography>
+                  <Typography variant="h4">Ksh.{CommaFunct(order.total_ammount)}</Typography>
                   
                   <Typography variant="subtitle1" color="textSecondary">
                   Ordered {dayjs(order.added_on).fromNow()}
