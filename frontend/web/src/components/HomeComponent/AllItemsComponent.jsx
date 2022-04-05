@@ -19,7 +19,6 @@ import Chip from "@material-ui/core/Chip";
 
 
 //local imports
-import OffersComponent from "./OffersComponent";
 import ProductDetailsComponent from "./ProductDetailsComponent";
 import NoImage from "../../assets/img/oops-no-image.jpg";
 import CommaFunct from "../../constant";
@@ -111,10 +110,6 @@ function AllItemsComponent(props) {
           <Grid item xs={12}>
             
             <Typography className={classes.top} color="textSecondary" variant="h3">Today</Typography>
-          </Grid>
-          <Grid item xs={12}>
-        
-<OffersComponent/>
           </Grid>
 
      

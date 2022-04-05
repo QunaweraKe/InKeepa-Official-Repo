@@ -4,7 +4,6 @@ import cartReducer from "./cart";
 import itemsReducer from "./items";
 import ordersReducer from "./orders";
 import shopsReducer from "./shops";
-import offersReducer from "./offers";
 import uiReducer from "./ui";
 import supportReducer from "./support";
 
@@ -16,5 +15,4 @@ export default combineReducers({
   shops: shopsReducer,
   ui: uiReducer,
   support:supportReducer,
-  offers:offersReducer,
 });

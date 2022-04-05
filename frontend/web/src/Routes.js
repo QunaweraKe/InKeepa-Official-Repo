@@ -6,7 +6,6 @@ import SignUpComponent from "./components/SignUpComponent";
 import SalesComponent from "./components/Support/SalesComponent";
 import HelpComponent from "./components/Support/HelpComponent";
 import CartComponent from "./components/CartComponent";
-import OffersComponent from "./components/HomeComponent/OffersComponent";
 import AccountComponent from "./components/AccountComponent";
 import PageNotFoundComponent from "./layouts/PageNotFoundComponent";
 import PrivateRoute from "./PrivateRoute";
@@ -19,7 +18,6 @@ export const routes = {
   cart: "/cart",
   help:"/help",
   sales:"/sales",
-  offers:"/offers",
 };
 
 export default function Routes() {
@@ -37,7 +35,6 @@ export default function Routes() {
         <Route path={routes.signup} exact component={SignUpComponent} />
         <Route path={routes.sales} exact component={SalesComponent} />
         <Route path={routes.help} exact component={HelpComponent} />
-        <Route path={routes.offers} exact component={OffersComponent} />
         <Route component={PageNotFoundComponent} />
       </Switch>
     </Router>

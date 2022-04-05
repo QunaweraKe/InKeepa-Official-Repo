@@ -33,14 +33,6 @@ class CategoryAPIView(APIView):
         return Response(serializer.category_data)
 
 
-class OffersAPIView(ListAPIView):
-    queryset = Item.objects.filter(
-        soft_delete=False, offers=True, available=True
-    ).order_by("-added_on")
-    serializer_class = ItemSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-
 class CartRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     """
     /api/me/cart [GET, PUT]

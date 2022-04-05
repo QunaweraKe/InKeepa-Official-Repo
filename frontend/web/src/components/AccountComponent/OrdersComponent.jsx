@@ -102,8 +102,11 @@ function OrdersComponent(props) {
               >
                 <div>
                
+                  <Typography variant="body2" color="textPrimary">
+                    Order ID &middot; {order.id}
+                  </Typography>
                   <Typography variant="body2" color="textSecondary">
-                    Order ID - {order.id}
+                    Table &middot; {order.table_id}
                   </Typography>
              
                   {order.status === 0 &&   order.is_active === false

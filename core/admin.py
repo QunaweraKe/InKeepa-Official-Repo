@@ -50,6 +50,7 @@ class ItemAdmin(admin.ModelAdmin):
         "image",
         "price",
         "offers",
+        "offerprice",
         "shop",
         "added_by",
         "added_on",

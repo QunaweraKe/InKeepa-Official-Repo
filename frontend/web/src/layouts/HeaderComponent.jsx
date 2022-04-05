@@ -199,7 +199,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Your session will end?
+            This will end your session?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
