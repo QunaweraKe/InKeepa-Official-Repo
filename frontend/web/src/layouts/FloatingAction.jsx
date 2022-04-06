@@ -38,7 +38,7 @@ function FloatingAction(props) {
     variant="extended"
     color="primary" aria-label="edit"
     sx={{ mr: 2 }}
-    style={{ textDcoration: "underline", margin: 10, bottom: 10, right: 30, left: "auto", position: "fixed" }}>
+    style={{ fontWeight:"bold", margin: 10, bottom: 10, right: 30, left: "auto", position: "fixed" }}>
        Place order 
     <Badge 
                  anchorOrigin={{

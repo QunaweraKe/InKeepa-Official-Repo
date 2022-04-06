@@ -208,6 +208,7 @@ function AllItemsComponent(props) {
                 title="Image title"
                 style={{filter:"blur(5px)",}}
               />
+              <Chip  label="Currently Unavailable" className={classes.chip}/>
               <CardContent className={classes.cardContent}>
                 <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
                   Ksh. {item.price.toLocaleString()}
@@ -219,11 +220,7 @@ function AllItemsComponent(props) {
               </CardContent>
             
             </Card>
-              <CardActions>
-              <Typography align="" color="textSecondary" style={{fontFamily:"monospace",fontWeight:"bold"}}>
-               <i> Currently Unavailable</i>
-              </Typography>
-              </CardActions>
+            
               </>
               
     )}

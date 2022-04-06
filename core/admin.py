@@ -1,5 +1,7 @@
 from django.contrib import admin
 import datetime
+from django.db import models
+from django.forms import TextInput, Textarea
 from core.models import Shop, Item, Cart, Order, Category
 
 # Register your models here.
@@ -42,11 +44,15 @@ class ItemAdmin(admin.ModelAdmin):
 
     make_available_selected_post.short_description = "Make Item(s) Available"
     search_fields = ("name",)
+    formfield_overrides = {
+        models.CharField: {"widget": Textarea(attrs={"rows": 5, "cols": 60})},
+    }
 
     list_display = (
         "id",
+        "available",
         "name",
-        "description",
+        "short_description",
         "image",
         "price",
         "shop",
