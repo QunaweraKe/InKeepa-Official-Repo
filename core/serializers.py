@@ -28,14 +28,11 @@ class ShopSerializer(serializers.ModelSerializer):
 
 class ItemSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(default=serializers.CurrentUserDefault())
-    offerprice = serializers.IntegerField(required=False)
 
     class Meta:
         model = Item
         fields = (
             "category",
-            "offers",
-            "offerprice",
             "id",
             "name",
             "description",

@@ -50,13 +50,11 @@ class Category(models.Model):
 
 
 class Item(models.Model):
-    offers = models.BooleanField(default=False, verbose_name="On_Offer")
     category = models.ForeignKey("core.Category", on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=1000, editable=True)
     image = models.ImageField(upload_to="items", null=True, blank=True)
     price = models.PositiveSmallIntegerField()
-    offerprice = models.PositiveSmallIntegerField(blank=True, null=True)
     shop = models.ForeignKey("core.Shop", on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -75,14 +73,6 @@ class Item(models.Model):
                 image_var.save(self.image.path)
         except:
             pass
-        if self.offers:
-            try:
-                new = Item.objects.all()
-                if self != new:
-                    new.offers = False
-                    new.update()
-            except Item.DoesNotExist:
-                pass
 
     def __str__(self):
         return self.name

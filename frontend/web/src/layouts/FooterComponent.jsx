@@ -1,8 +1,13 @@
 import React  from 'react';
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory} from "react-router-dom";
+//material
+import Link from '@material-ui/core/Link';
+
+//local
 
 import Copyright from "./Copyright";
+import { routes } from "../Routes";
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -13,12 +18,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FooterComponent() {
+  const history = useHistory();
+
+const handleRouteClick = (route) => {
+  history.push(route);
+  };
+  
   const classes = useStyles();
   return (
     <>
       {/* Footer */}
       <footer className={classes.footer} >
-      <Typography>Privacy policy   &middot; Terms  &middot; Contact Us</Typography> 
+      <Link
+onClick={() => handleRouteClick(routes.help)}
+variant="body2"
+component="button"
+color="secondary"
+style={{fontWeight:800,fontSize:".8em"}}
+>
+{"Need Help?"}
+</Link>
       
         <Copyright />
      

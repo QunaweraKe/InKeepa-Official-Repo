@@ -49,8 +49,6 @@ class ItemAdmin(admin.ModelAdmin):
         "description",
         "image",
         "price",
-        "offers",
-        "offerprice",
         "shop",
         "added_by",
         "added_on",
@@ -61,6 +59,10 @@ class ItemAdmin(admin.ModelAdmin):
         "make_unavailable_selected_post",
         "make_available_selected_post",
     ]
+
+    def save_model(self, request, obj, change, form):
+        obj.user = request.user
+        return super(ItemAdmin, self).save_model(request, obj, form, change)
 
 
 @admin.register(Cart)

@@ -211,7 +211,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
           </Button>
         </DialogActions>
       </Dialog>
-
+      <MenuItem 
+        style={{fontSize:15,fontWeight:"bolder"}}>
+          
+            About
+     
+        </MenuItem>
       </Menu>
      
     </div>

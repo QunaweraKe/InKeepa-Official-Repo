@@ -13,7 +13,6 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Container from "@material-ui/core/Container";
 import PropTypes from "prop-types";
-import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 
@@ -51,6 +50,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginBottom:0,
+    position:"relative"
+  },
+  chip:{
+    position: "absolute",
+    top: "5%",
+    backgroundColor: "none",
+    fontFamily:"monospace",
+    fontWeight:"bold", 
   },
   cardMedia: {
     paddingTop: "56.25%", // 16:9
@@ -125,19 +132,27 @@ function AllItemsComponent(props) {
                   {item.available  ? (
                     <>
               <Card  style={cardStyle} className={classes.card}>
+           
                 <CardMedia
                   className={classes.cardMedia}
                   image={item.image || NoImage}
                   title="Item Image"
                 />
+
+                  {cartItems.includes(item.id) && (
+                      <Chip  label="Added" className={classes.chip}/>
+                  )}
+  
+          
+  
                 <CardContent className={classes.cardContent}>
                   <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
                     Ksh. {CommaFunct(item.price)}
                   </Typography>
                   <Divider/>
                   <Typography style={{fontWeight:600,fontSize:16,marginTop:5,}}>{item.name}</Typography>
-                  
-  
+         
+              
               
                 </CardContent>
                
@@ -145,17 +160,17 @@ function AllItemsComponent(props) {
               <CardActions>
                   {cartItems.includes(item.id) ? (
                     <>
-                     <Chip  label="Added" style={{fontFamily:"monospace",fontWeight:"bold"}} />
-                    <IconButton
-                    style={{color:"#FD5D5D"}}
-                    variant="contained"
+                   
+                    <Button
+                    style={{color:"#FD5D5D",fontWeight:"bold"}}
+                    variant="outlined"
                       size="small"
                       fullWidth
                       onClick={() => handleRemoveItemFromCart(item.id)}
                       disabled={isUiLoading}
                     >
-                      <DeleteIcon/>
-                    </IconButton>
+                    Remove 
+                    </Button>
                     </>
                   ) : (<>
                     <Button
