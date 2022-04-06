@@ -137,7 +137,6 @@ class ItemsListAPIView(ListAPIView):
     serializer_class = ItemSerializer
     permission_classes = (IsAuthenticated,)
     queryset = Item.objects.filter(soft_delete=False).order_by("-added_on")
-    filterset_fields = ["shop"]
 
 
 class ItemsCreateAPIView(CreateAPIView):

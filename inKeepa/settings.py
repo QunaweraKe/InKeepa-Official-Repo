@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "drf_yasg",
     "phonenumber_field",
-    "django_filters",
     # local apps
     "core.apps.CoreConfig",
     "accounts.apps.AccountsConfig",
@@ -135,7 +134,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Django Rest Framework Settings
 REST_FRAMEWORK = {
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",

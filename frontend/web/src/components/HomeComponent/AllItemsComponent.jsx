@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 //material Ui
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+import { fade } from '@material-ui/core/styles';
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     padding:6,
     fontWeight:600,
     lineHeight:1,
+
   },
   cardGrid: {
     top:2,
@@ -47,6 +48,9 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     // height: "100%",
+    '&:hover': {
+      backgroundColor: fade(theme.palette.primary.light, 0.1),
+    },
     display: "flex",
     flexDirection: "column",
     marginBottom:0,
@@ -116,7 +120,7 @@ function AllItemsComponent(props) {
        
           <Grid item xs={12}>
             
-            <Typography className={classes.top} color="textSecondary" variant="h3">Today</Typography>
+            <Typography className={classes.top} color="textSecondary" variant="h3">Today's Menu</Typography>
           </Grid>
 
      

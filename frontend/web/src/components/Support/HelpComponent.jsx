@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { useHistory } from 'react-router-dom';
 import PropTypes from "prop-types";
 //material ui
 import Button from '@material-ui/core/Button';
@@ -10,23 +9,17 @@ import Box from '@material-ui/core/Box';
 import Logo1 from "../../assets/img/OfficialLogo.svg";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { Typography } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
 //local
 import Copyright from "../../layouts/Copyright";
 import { Help } from "../../store/actions/support";
+import BackButton from "../../layouts/BackButton";
 
 
 
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -59,17 +52,7 @@ const initialCredentials = {
 
 
 function HelpComponent(props) {
-  const history = useHistory();
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+ 
 
   const classes = useStyles();
 
@@ -85,7 +68,6 @@ function HelpComponent(props) {
       Help(credentials);
     }
     setCrendentials('');
-    handleClose();
     return console.log("success")
   }
   catch (err) {
@@ -106,8 +88,13 @@ function HelpComponent(props) {
 
   return (
     <>
-    <Container component="main" maxWidth="xs" fixed
-    style={{paddingTop:5,paddingLeft:5,paddingRight:5,border:"solid",borderWidth:0,borderRadius:5,backgroundColor:"inherit"}}>
+  
+
+    <Container component="main" maxWidth="sm" fixed>
+      <Box mt={2}>
+      <BackButton/>
+      </Box>
+ 
       <CssBaseline />
       <div className={classes.paper}>
    
@@ -117,28 +104,15 @@ className={classes.LogoImage}
 src={Logo1}
 alt="null"
 />
-
-<Typography>Need Further Assistance from our Team?</Typography>
-<Button  color="primary" onClick={handleClickOpen}>
-        Click Here
-      </Button>
-      <Button
-      variant="contained"
-      color="primary"
-      onClick={() => history.goBack()}
-    >
-      < ArrowBackIcon />Go Back
-    </Button>
-      <Dialog open={open} onClose={handleClose} sm aria-labelledby="form-dialog-title">
+     
+      
       <form
 className={classes.form}
 noValidate
 onSubmit={handleFormSubmit}
 >         
-<DialogTitle>
   Fill in all the fields below.
-  </DialogTitle>  
-<DialogContent>
+  
 <TextField
           focused
             variant="filled"
@@ -195,25 +169,11 @@ onSubmit={handleFormSubmit}
             autoComplete="description"
             onChange={handleInputChange}
             multiline
-            maxRows={5}
+            rows={5}
       
           />
             
-            </DialogContent>
-          
 
-               <DialogActions>
-               <Button
-           type="submit"
-           onClick={handleClose}
-fullWidth
-variant="outlined"
-color="secondary"
-className={classes.submit}
-endIcon={isUiLoading && <CircularProgress size={20} />}
-          >
-            Cancel
-          </Button>
           <Button
            type="submit"
 fullWidth
@@ -221,14 +181,11 @@ variant="contained"
 color="secondary"
 disabled={isUiLoading}
 className={classes.submit}
-endIcon={isUiLoading && <CircularProgress size={20} />}
           >
             Submit
           </Button>
-          </DialogActions> 
           
         </form>
-        </Dialog>
       </div>
       <Box mt={4}>
         <Copyright />

@@ -58,7 +58,7 @@ class Item(models.Model):
     image = models.ImageField(upload_to="items", null=True, blank=True)
     price = models.PositiveSmallIntegerField()
     shop = models.ForeignKey("core.Shop", on_delete=models.CASCADE)
-    added_on = models.DateTimeFie(auto_now_add=True)
+    added_on = models.DateTimeField(auto_now_add=True)
     added_by = models.ForeignKey(User, on_delete=models.CASCADE)
     updated_on = models.DateTimeField(auto_now=True)
     available = models.BooleanField(default=True, verbose_name="Availability")

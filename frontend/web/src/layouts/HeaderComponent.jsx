@@ -1,16 +1,12 @@
 import React from "react";
+//Material UI
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import Menu from "@material-ui/core/Menu";
-import Slide from '@material-ui/core/Slide';
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness3Icon from '@material-ui/icons/Brightness2';
@@ -67,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   themeSwitchButton: {
-    marginRight: theme.spacing(0.5),
+    marginRight: theme.spacing(1),
   },
 }));
 
@@ -78,15 +74,6 @@ function HeaderComponent(props) {
   const history = useHistory();
 
   const { signOut, defaultTheme, toggleTheme } = props;
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
   const handleAccountMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -103,9 +90,7 @@ function HeaderComponent(props) {
     signOut();
   };
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+
 
 
   return (
@@ -151,7 +136,31 @@ const Transition = React.forwardRef(function Transition(props, ref) {
             >
               <AccountCircle />
             </IconButton>
-            <IconButton
+            
+            
+            <IconButton 
+                  edge="end"
+                  color="textSecondary" onClick={handleLogout}><ExitToAppIcon/></IconButton  >
+        
+          </div>
+        </Toolbar>
+      </AppBar>
+
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        id="primary-search-account-menu"
+        keepMounted
+        transformOrigin={{ vertical: "top", horizontal: "right" }}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={() => handleRouteClick(routes.account)}
+        style={{fontSize:15,fontWeight:"bolder"}}>
+           Account
+        </MenuItem>
+        <MenuItem>
+        <IconButton
               edge="end"
               aria-label="theme switch"
               className={classes.themeSwitchButton}
@@ -170,47 +179,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
                 </IconButton>
               )}
             </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-
-      <Menu
-        anchorEl={anchorEl}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        id="primary-search-account-menu"
-        keepMounted
-        transformOrigin={{ vertical: "top", horizontal: "right" }}
-        open={Boolean(anchorEl)}
-        onClose={handleMenuClose}
-      >
-        <MenuItem onClick={() => handleRouteClick(routes.account)}
-        style={{fontSize:15,fontWeight:"bolder"}}>
-           Account
         </MenuItem>
-        <MenuItem   style={{fontSize:15,fontWeight:"bolder"}} onClick={handleClickOpen}>Log Out</MenuItem
-        >
-        <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-    
-      >
-
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            This will end your session?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="secondary" variant="outlined">
-            Cancel
-          </Button>
-          <Button onClick={handleLogout} color="secondary" variant="contained">
-           Yes,Log Out
-          </Button>
-        </DialogActions>
-      </Dialog>
+  
       <MenuItem 
         style={{fontSize:15,fontWeight:"bolder"}}>
           
