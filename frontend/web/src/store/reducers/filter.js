@@ -1,5 +1,5 @@
 import {
-   APPLYFILTER
+   APPLYFILTER,RESETFILTER
   } from "../actions/types";
   
   const initialState = {
@@ -13,8 +13,14 @@ import {
           ...state,
           filter: action.payload,
         };
-          default:
-            return state;
-        }
+        case RESETFILTER:
+    
+             return {
+                  ...state,
+                  ...initialState,
+                };
+              default:
+                return state;
+            }
       }
       
