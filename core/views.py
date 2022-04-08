@@ -1,5 +1,6 @@
 # from django.shortcuts import render
-
+from rest_framework import filters
+from http.client import HTTPResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -10,6 +11,7 @@ from rest_framework.generics import (
     ListAPIView,
     CreateAPIView,
 )
+from rest_framework import status
 
 from accounts.permissions import IsNursery, IsOwner
 from core.models import Shop, Item, Order
@@ -20,17 +22,59 @@ from core.serializers import (
     OrderSerializer,
 )
 
-# Create your views here.
+# TODO:Contains erros
 class CategoryAPIView(APIView):
     serializer_class = ItemSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def post(self, request, format=None):
+    def get(self, request, format=None):
         category_data = request.data
-        category = category_data["category"]
+        category = category_data["category__id"]
         qs = Item.objects.filter(category__iexact=category)
         serializer = ItemSerializer(qs, many=True)
         return Response(serializer.category_data)
+
+
+class SearchListAPIView(ListAPIView):
+    """
+    /api/me/search [GET]
+    """
+
+    serializer_class = ItemSerializer
+    permission_classes = (IsAuthenticated,)
+    filter_backends = [filters.SearchFilter]
+    search_fields = ("name", "description", "category__id")
+    queryset = Item.objects.filter(soft_delete=False).order_by("-added_on")
+
+
+def filter_min_price(request, min_price):
+    try:
+        items = Item.objects.filter(price__gte=min_price)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == "GET":
+        serializer = ItemSerializer(items, many=True)
+        return Response(serializer.data, safe=False)
+
+
+def filter_max_price(request, max_price):
+    try:
+        items = Item.objects.filter(price__lte=max_price)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == "GET":
+        serializer = ItemSerializer(items, many=True)
+        return Response(serializer.data, safe=False)
+
+
+def filter_all(request, max_price, min_price):
+    try:
+        items = Item.objects.filter(price__range=(max_price, min_price))
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == "GET":
+        serializer = ItemSerializer(items, many=True)
+        return Response(serializer.data, safe=False)
 
 
 class CartRetrieveUpdateAPIView(RetrieveUpdateAPIView):

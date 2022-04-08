@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core";
 //local
 import ProfileComponent from "./ProfileComponent";
 import OrdersComponent from "./OrdersComponent";
+import BackButton from "../../layouts/BackButton";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,6 +81,7 @@ export default function AccountComponent() {
   return (
     <>
       <Container className={classes.root} maxWidth="md">
+        <BackButton/>
         <Grid container spacing={2}>
           <Grid item xs={12} md={5}>
             <ProfileComponent classes={classes} />

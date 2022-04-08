@@ -6,6 +6,7 @@ import ordersReducer from "./orders";
 import shopsReducer from "./shops";
 import uiReducer from "./ui";
 import supportReducer from "./support";
+import filterReducer from "./filter";
 
 export default combineReducers({
   auth: authReducer,
@@ -15,4 +16,5 @@ export default combineReducers({
   shops: shopsReducer,
   ui: uiReducer,
   support:supportReducer,
+  filter:filterReducer,
 });

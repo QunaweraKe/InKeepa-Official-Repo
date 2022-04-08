@@ -21,3 +21,21 @@ export const MY_SHOP_API = `${process.env.REACT_APP_BACKEND_API}/shop/`;
 
 export const ITEMS_LIST_API = `${process.env.REACT_APP_BACKEND_API}/items/`;
 export const CATEGORY_LIST_API = `${process.env.REACT_APP_BACKEND_API}/category/`;
+
+export const FILTERALL_API =(minprice,maxprice) => {
+    let url;
+if (minprice && maxprice){
+      url='price/filterall/${minprice}/${maxprice}/'
+    }
+ else if (minprice && maxprice === ""){
+    url='price/minprice/${minprice}/'
+    }
+else{
+    url='price/maxprice/${maxprice}/'
+      
+
+  }
+  return( `${process.env.REACT_APP_BACKEND_API}/${url}/`);
+
+}
+export const SEARCH_LIST_API = `${process.env.REACT_APP_BACKEND_API}/search/`;

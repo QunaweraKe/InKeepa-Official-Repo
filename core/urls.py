@@ -15,10 +15,18 @@ from core.views import (
     ItemsCreateAPIView,
     ItemRetrieveUpdateDestroyAPIView,
     CategoryAPIView,
+    SearchListAPIView,
+    filter_all,
+    filter_max_price,
+    filter_min_price,
 )
 
 
 urlpatterns = [
+    path("api/price/filterall/<int:minprice>/<int:maxprice>/", filter_all),
+    path("api/price/minprice/<int:minprice>/", filter_min_price),
+    path("api/price/maxprice/<int:maxprice>/", filter_max_price),
+    path("api/search/", SearchListAPIView.as_view()),
     path("api/category/", CategoryAPIView.as_view()),
     path("api/me/cart/", CartRetrieveUpdateAPIView.as_view()),
     path("api/me/orders/", OrdersListAPIView.as_view()),

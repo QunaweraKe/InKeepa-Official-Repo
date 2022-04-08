@@ -124,7 +124,25 @@ function HeaderComponent(props) {
           </Typography>
           <div className={classes.root} />
           <div>
-           
+          <IconButton
+              edge="end"
+              aria-label="theme switch"
+              className={classes.themeSwitchButton}
+              onClick={() =>
+                toggleTheme(defaultTheme === "dark" ? "light" : "dark")
+              }
+              color="inherit"
+            >
+              {defaultTheme === "dark" ? (
+                <IconButton className={classes.customHoverFocus}>
+                <Brightness3Icon />
+                </IconButton>
+              ) : (
+                <IconButton  className={classes.customHoverFocus}>
+                <WbSunnyIcon/>
+                </IconButton>
+              )}
+            </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -159,28 +177,7 @@ function HeaderComponent(props) {
         style={{fontSize:15,fontWeight:"bolder"}}>
            Account
         </MenuItem>
-        <MenuItem>
-        <IconButton
-              edge="end"
-              aria-label="theme switch"
-              className={classes.themeSwitchButton}
-              onClick={() =>
-                toggleTheme(defaultTheme === "dark" ? "light" : "dark")
-              }
-              color="inherit"
-            >
-              {defaultTheme === "dark" ? (
-                <IconButton className={classes.customHoverFocus}>
-                <Brightness3Icon />
-                </IconButton>
-              ) : (
-                <IconButton  className={classes.customHoverFocus}>
-                <WbSunnyIcon/>
-                </IconButton>
-              )}
-            </IconButton>
-        </MenuItem>
-  
+       
       <MenuItem 
         style={{fontSize:15,fontWeight:"bolder"}}>
           

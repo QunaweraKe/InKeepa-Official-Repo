@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 import Copyright from "../../layouts/Copyright";
 import { Help } from "../../store/actions/support";
 import BackButton from "../../layouts/BackButton";
+import { Typography } from '@material-ui/core';
 
 
 
@@ -59,15 +60,16 @@ function HelpComponent(props) {
   const [credentials, setCrendentials] = React.useState(initialCredentials);
   const {  isUiLoading,  Help } = props;
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = () => {
+  
     try
     {   
      const { name ,email, subject,description} = credentials;
     if (name && email  && subject && description) {
       Help(credentials);
+      setCrendentials('');
     }
-    setCrendentials('');
+  
     return console.log("success")
   }
   catch (err) {
@@ -104,14 +106,17 @@ className={classes.LogoImage}
 src={Logo1}
 alt="null"
 />
-     
+     <Typography variant="subtitle1" color="textSecondary">Hi,Let us know what your is issue here.</Typography>
       
       <form
 className={classes.form}
 noValidate
 onSubmit={handleFormSubmit}
->         
-  Fill in all the fields below.
+>  
+<Typography variant="subtitle2">
+Fill in all the fields below.
+  </Typography>       
+ 
   
 <TextField
           focused

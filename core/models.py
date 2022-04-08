@@ -94,6 +94,7 @@ class Cart(models.Model):
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(User, related_name="cart", on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
 
     def __str__(self):
         return self.user.email

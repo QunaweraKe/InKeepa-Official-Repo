@@ -15,19 +15,19 @@ import axios from "axios";
   } from "../../api";
 
 
-export const Help = (name,email,subject,description) => (dispatch) => {
+export const Help = (credentials) => (dispatch) => {
     // Start Loading the UI
     dispatch({
       type: UI_LOADING_START,
     });
     axios
-      .post(HELP_API, JSON.stringify(name,email,subject,description), {
+      .post(HELP_API, JSON.stringify(credentials), {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((res) => {
-        if (res.status === 201) {
+        if (res.status === 200) {
           dispatch({
             type: SUPPORT_SUCCESS,
             payload: res.data,
