@@ -1,5 +1,8 @@
 import React from "react";
+import { useHistory } from "react-router";
+import { connect } from "react-redux";
 //Material UI
+import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -14,8 +17,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import { useHistory } from "react-router";
-import { connect } from "react-redux";
+
 import Logo1 from "../assets/img/OfficialLogo.svg";
 import { routes } from "../Routes";
 import { signOut } from "../store/actions/auth";
@@ -32,7 +34,9 @@ const useStyles = makeStyles((theme) => ({
     filter:"blur(.5px)",
     
   },
- 
+ icons:{
+   marginLeft:3,
+ },
   toolbar: {
     maxHeight: '20px',
   },
@@ -61,9 +65,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
-  },
-  themeSwitchButton: {
-    marginRight: theme.spacing(1),
   },
 }));
 
@@ -124,25 +125,7 @@ function HeaderComponent(props) {
           </Typography>
           <div className={classes.root} />
           <div>
-          <IconButton
-              edge="end"
-              aria-label="theme switch"
-              className={classes.themeSwitchButton}
-              onClick={() =>
-                toggleTheme(defaultTheme === "dark" ? "light" : "dark")
-              }
-              color="inherit"
-            >
-              {defaultTheme === "dark" ? (
-                <IconButton className={classes.customHoverFocus}>
-                <Brightness3Icon />
-                </IconButton>
-              ) : (
-                <IconButton  className={classes.customHoverFocus}>
-                <WbSunnyIcon/>
-                </IconButton>
-              )}
-            </IconButton>
+          
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -152,13 +135,9 @@ function HeaderComponent(props) {
               color="inherit"
               
             >
-              <AccountCircle />
+              <SettingsIcon />
             </IconButton>
             
-            
-            <IconButton 
-                  edge="end"
-                  color="textSecondary" onClick={handleLogout}><ExitToAppIcon/></IconButton  >
         
           </div>
         </Toolbar>
@@ -175,13 +154,39 @@ function HeaderComponent(props) {
       >
         <MenuItem onClick={() => handleRouteClick(routes.account)}
         style={{fontSize:15,fontWeight:"bolder"}}>
-           Account
+    
+           <span className="nav-button-text" color="textSecondary">Account</span>
+           <AccountCircle className={classes.icons} />
         </MenuItem>
+        <MenuItem
+         style={{fontSize:15,fontWeight:"bolder"}}
+               onClick={handleLogout}>
+                        <span className="nav-button-text" color="textSecondary">Log Out</span>
+                        <ExitToAppIcon className={classes.icons} />
+                  </MenuItem  >
        
       <MenuItem 
-        style={{fontSize:15,fontWeight:"bolder"}}>
+       style={{fontSize:15,fontWeight:"bolder"}}
+        aria-label="theme switch"
+        className={classes.customHoverFocus}
+        onClick={() =>
+          toggleTheme(defaultTheme === "dark" ? "light" : "dark")
           
-            About
+        }>
+          
+  
+              {defaultTheme === "dark" ? (
+                <>
+                  <span className="nav-button-text">Dark Mode</span>
+                <Brightness3Icon />
+                </>
+              
+              ) : (
+                <>
+                  <span className="nav-button-text">Light Mode</span>
+                <WbSunnyIcon/>
+                </>
+              )}
      
         </MenuItem>
       </Menu>

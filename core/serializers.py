@@ -32,6 +32,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = (
+            "on_offer",
             "category",
             "id",
             "name",

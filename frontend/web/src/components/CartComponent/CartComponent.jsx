@@ -1,8 +1,9 @@
 import React from "react";
+import { useHistory } from "react-router";
 
 // Material UI
 
-
+import Chip from "@material-ui/core/Chip";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
@@ -26,6 +27,8 @@ import { emptyCart, removeItemFromCart } from "../../store/actions/cart";
 import { createOrder } from "../../store/actions/orders";
 import CommaFunct from "../../constant";
 import BackButton from "../../layouts/BackButton";
+//local
+import { routes } from "../../Routes";
 const initialCredentials = {
 
   table_id: null,
@@ -104,6 +107,10 @@ function CartComponent(props) {
   const handleDeleteItem = (itemId) => {
     removeItemFromCart(itemId);
   };
+  const history = useHistory();
+  const handleRouteClick = (route) => {
+    history.push(route);
+  };
 
   const handleCheckout = async (e) => {
     e.preventDefault();
@@ -162,8 +169,11 @@ function CartComponent(props) {
             <Typography style={{fontWeight:"bold"}}variant="h4" align="center">
               Menu Check
             </Typography>
+            <Chip  label="Account & Orders" clickable onClick={() => handleRouteClick(routes.account)} />
           </Grid>
+          
           <Grid item container spacing={2}>
+            
             <Grid item xs={12} lg={8}>
               <Card className={classes.card}
               style={{

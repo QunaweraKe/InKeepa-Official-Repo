@@ -57,8 +57,9 @@ const useStyles = makeStyles((theme) => ({
     position:"relative"
   },
   chip:{
+    color:"green",
     position: "absolute",
-    top: "5%",
+    top: "1%",
     backgroundColor: "none",
     fontFamily:"monospace",
     fontWeight:"bold", 
@@ -144,11 +145,10 @@ function AllItemsComponent(props) {
                 />
 
                   {cartItems.includes(item.id) && (
-                      <Chip  label="Added" className={classes.chip}/>
+                      <Chip  label="Picked" className={classes.chip}/>
                   )}
-  
-          
-  
+                  
+           
                 <CardContent className={classes.cardContent}>
                   <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
                     Ksh. {CommaFunct(item.price)}
@@ -166,7 +166,8 @@ function AllItemsComponent(props) {
                     <>
                    
                     <Button
-                    style={{color:"#FD5D5D",fontWeight:"bold"}}
+                  
+                    style={{color:"red",fontWeight:"bold"}}
                     variant="outlined"
                       size="small"
                       fullWidth

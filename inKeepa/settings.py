@@ -29,8 +29,8 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 # Application definition
 
 INSTALLED_APPS = [
-    # Jazzmin Admin theme
-    "jazzmin",
+    "jet.dashboard",
+    "jet",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -165,7 +165,7 @@ RAZOR_PAY_API_SECRET = os.environ["RAZOR_PAY_API_SECRET"]
 
 
 # Other Settings and Configs
-from inKeepa.jazzmin_config import *
+from inKeepa.jetsettings import *
 
 """
 If you are running locally-

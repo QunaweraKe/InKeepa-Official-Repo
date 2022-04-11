@@ -210,7 +210,7 @@ disabled={isUiLoading}
 className={classes.submit}
 endIcon={isUiLoading && <CircularProgress size={20} />}
           >
-            Sign Up
+            Get Started
           </Button>
           <Typography  variant="body" align ="center" color="secondary">By Signing In you agree to our and Privacy Policy</Typography>
           

@@ -51,6 +51,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     category = models.ForeignKey("core.Category", on_delete=models.CASCADE)
+    on_offer = models.BooleanField(default=False)
     name = models.CharField(max_length=50)
     description = models.CharField(
         max_length=1000, editable=True, verbose_name="Description"
@@ -94,7 +95,7 @@ class Cart(models.Model):
     added_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(User, related_name="cart", on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.user.email

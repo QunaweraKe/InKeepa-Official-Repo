@@ -50,11 +50,12 @@ class ItemAdmin(admin.ModelAdmin):
 
     list_display = (
         "id",
-        "available",
         "name",
         "short_description",
         "image",
         "price",
+        "available",
+        "on_offer",
         "shop",
         "added_by",
         "added_on",

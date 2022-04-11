@@ -43,6 +43,7 @@ urlpatterns = [
         get_schema_view(title="Inkeepa", version="1.0.0"),
         name="openapi-schema",
     ),
+    path("jet/", include("jet.urls", "jet")),
     # drf CoreAPI docs
     path("", include_docs_urls(title="Inkeepa"), name="drf-doc"),
     # Open API Docs ReDoc
@@ -55,6 +56,7 @@ urlpatterns = [
         ),
         name="swagger-doc",
     ),
+    path("jet/dashboard/", include("jet.dashboard.urls", "jet-dashboard")),
     path("", include("core.urls")),
     path("", include("accounts.urls")),
     path("", include("support.urls")),

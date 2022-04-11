@@ -10,13 +10,12 @@ User = get_user_model()
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    list_display = ("email", "username", "full_name", "is_nursery", "created_on")
+    list_display = ("email", "username", "full_name", "is_staff", "created_on")
     list_display_links = ("email", "username")
     fields = (
         "email",
         "username",
         "full_name",
-        "is_nursery",
         "is_active",
         "is_staff",
         "user_permissions",
