@@ -144,6 +144,10 @@ class Order(models.Model):
     def all_items(self):
         return self.items.all()
 
+    @property
+    def orders_count(self):
+        return self.items.count()
+
     @transition(field=status, source=STATUS_CREATED, target=STATUS_FULFILLED)
     def fulfill_order(self):
         pass

@@ -138,7 +138,7 @@ function CartComponent(props) {
               />
               <div className={classes.itemDetail}>
                 <Typography  color="textSecondary" variant="h4"> {item.name}</Typography>
-                <Typography color="textSecondary" variant="subtitle1"><i>Price</i> &middot; Ksh {CommaFunct(item.price)}</Typography>
+                <Typography color="textSecondary" variant="subtitle1">Price&middot; Ksh {CommaFunct(item.price)}</Typography>
                 <Button
                     style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                   size="small"
@@ -169,7 +169,7 @@ function CartComponent(props) {
             <Typography style={{fontWeight:"bold"}}variant="h4" align="center">
               Menu Check
             </Typography>
-            <Chip  label="Account & Orders" clickable onClick={() => handleRouteClick(routes.account)} />
+            <Chip  label=" Previous Orders" clickable onClick={() => handleRouteClick(routes.account)} />
           </Grid>
           
           <Grid item container spacing={2}>

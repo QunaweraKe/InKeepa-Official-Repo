@@ -103,6 +103,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "get_items",
+        "orders_count",
         "total_ammount",
         "table_id",
         "is_active",
