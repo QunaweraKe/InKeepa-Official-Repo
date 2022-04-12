@@ -1,13 +1,13 @@
 import React  from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import { useHistory} from "react-router-dom";
+
 //material
-import Link from '@material-ui/core/Link';
 
 //local
 
 import Copyright from "./Copyright";
-import { routes } from "../Routes";
+import HelpComponent from '../components/Support/HelpComponent';
+
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -18,27 +18,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FooterComponent() {
-  const history = useHistory();
-
-const handleRouteClick = (route) => {
-  history.push(route);
-  };
   
   const classes = useStyles();
   return (
     <>
       {/* Footer */}
       <footer className={classes.footer} >
-      <Link
-onClick={() => handleRouteClick(routes.help)}
-variant="body2"
-component="button"
-color="secondary"
-style={{fontWeight:800,fontSize:".8em"}}
->
-{"Need Help?"}
-</Link>
-      
+
+      <HelpComponent/>
         <Copyright />
      
       </footer>

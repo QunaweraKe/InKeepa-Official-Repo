@@ -221,15 +221,7 @@ style={{textDecoration:"underline",fontWeight:800,fontSize:".8em"}}
         </form>
       </div>
       <Box mt={2}>
-      <Link
-onClick={() => handleRouteClick(routes.help)}
-variant="body2"
-component="button"
-color="secondary"
-style={{fontWeight:800,fontSize:".8em"}}
->
-{"Need Help?"}
-</Link>
+
         <Copyright />
       </Box>
      

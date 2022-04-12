@@ -3,16 +3,15 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 //material ui
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-import Logo1 from "../../assets/img/OfficialLogo.svg";
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
 //local
 import Copyright from "../../layouts/Copyright";
 import { Help } from "../../store/actions/support";
-import BackButton from "../../layouts/BackButton";
 import { Typography } from '@material-ui/core';
 
 
@@ -20,10 +19,11 @@ import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(1),
-    display: 'flex',
-    flexDirection: 'column',
+  
     alignItems: 'center',
+    position:"absolute",
+    left:0,
+    bottom:0,
   },
    
   
@@ -53,7 +53,15 @@ const initialCredentials = {
 
 
 function HelpComponent(props) {
- 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const classes = useStyles();
 
@@ -90,23 +98,14 @@ function HelpComponent(props) {
 
   return (
     <>
-  
+     <Button  size= "small"  color="secondary" onClick={handleClickOpen}>
+        Need Help?
+      </Button>
+      <Dialog fullWidth maxWidth="xs" classes={{paper:classes.paper}} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+    <Typography color="textSecondary" style={{fontWeight:"bold"}} variant ="h3">Help Center</Typography>
+        <DialogContent>
 
-    <Container component="main" maxWidth="sm" fixed>
-      <Box mt={2}>
-      <BackButton/>
-      </Box>
- 
-      <CssBaseline />
-      <div className={classes.paper}>
-   
-  
-        <img
-className={classes.LogoImage}
-src={Logo1}
-alt="null"
-/>
-     <Typography variant="subtitle1" color="textSecondary">Hi,Let us know what your is issue here.</Typography>
+
       
       <form
 className={classes.form}
@@ -152,6 +151,7 @@ Fill in all the fields below.
             margin="normal"
             required
             focused
+            helperText="If it is an order kindly add the order ID for easier reference"
             fullWidth
             name="subject"
             label="Subject"
@@ -179,6 +179,7 @@ Fill in all the fields below.
           />
             
 
+            <DialogActions>
           <Button
            type="submit"
 fullWidth
@@ -189,13 +190,14 @@ className={classes.submit}
           >
             Submit
           </Button>
-          
+          </DialogActions>
         </form>
-      </div>
+    
       <Box mt={4}>
         <Copyright />
       </Box>
-    </Container>
+    </DialogContent>
+    </Dialog>
     </>
   );
 }

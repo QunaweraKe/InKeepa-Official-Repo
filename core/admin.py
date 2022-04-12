@@ -3,8 +3,10 @@ import datetime
 from django.db import models
 from django.forms import TextInput, Textarea
 from core.models import Shop, Item, Cart, Order, Category
+from django.contrib.auth.models import Group
 
-# Register your models here.
+
+admin.site.unregister(Group)
 
 
 @admin.register(Shop)
