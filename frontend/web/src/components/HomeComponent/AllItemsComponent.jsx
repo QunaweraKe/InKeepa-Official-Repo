@@ -146,7 +146,9 @@ function AllItemsComponent(props) {
 
                   {cartItems.includes(item.id) && (
                       <Chip  label="Picked" className={classes.chip}/>
+                      
                   )}
+                  
                   
            
                 <CardContent className={classes.cardContent}>
@@ -167,7 +169,7 @@ function AllItemsComponent(props) {
                    
                     <Button
                   
-                    style={{color:"red",fontWeight:"bold"}}
+                    style={{color:"red"}}
                     variant="outlined"
                       size="small"
                       fullWidth

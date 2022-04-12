@@ -50,6 +50,7 @@ class ItemAdmin(admin.ModelAdmin):
 
     list_display = (
         "id",
+        "category_id",
         "name",
         "short_description",
         "image",
@@ -83,7 +84,7 @@ class CartAdmin(admin.ModelAdmin):
     )
 
     def get_items(self, obj):
-        return list(obj.all_items)
+        return list(obj.all_items) if obj.all_items.exists() else "Not Added Item"
 
     get_items.short_description = "Item"
 
@@ -96,10 +97,6 @@ class OrderAdmin(admin.ModelAdmin):
             del actions["delete_selected"]
         return actions
 
-    def cancel_requests(modeladmin, request, queryset):
-        queryset.update(status=2)
-
-    cancel_requests.short_description = "Cancel Request(s)"
     list_display = (
         "id",
         "get_items",
@@ -111,7 +108,7 @@ class OrderAdmin(admin.ModelAdmin):
         "status",
         "added_on",
     )
-    list_editable = ("status",)
+
     readonly_fields = ("is_active",)
     search_fields = [
         "id",
@@ -138,6 +135,20 @@ class OrdersByDay(OrderAdmin):
         qs = super(OrderAdmin, self).get_queryset(request)
         return qs.filter(added_on__gt=today, is_active=True, status=0)
 
+    def accept_requests(modeladmin, request, queryset):
+        queryset.update(status=1)
+
+    def cancel_requests(modeladmin, request, queryset):
+        queryset.update(status=2)
+
+    cancel_requests.short_description = "Cancel Request(s)"
+    accept_requests.short_description = "Accept Request(s)"
+    list_editable = ("status",)
+    actions = ["accept_requests", "cancel_requests"]
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 admin.site.register(OrdersToday, OrdersByDay)
 
@@ -145,13 +156,25 @@ admin.site.register(OrdersToday, OrdersByDay)
 class OrdersRequestedCancellation(Order):
     class Meta:
         proxy = True
-        verbose_name_plural = "Order Cancel Requests"
+        verbose_name_plural = "Cancel Requests"
 
 
 class OrdersRequested(OrderAdmin):
     def get_queryset(self, request):
         qs = super(OrderAdmin, self).get_queryset(request)
         return qs.filter(is_active=False, status=0)
+
+    def cancel_requests(modeladmin, request, queryset):
+        queryset.update(status=2)
+
+    cancel_requests.short_description = "Cancel Request(s)"
+
+    actions = [
+        "cancel_requests",
+    ]
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(OrdersRequestedCancellation, OrdersRequested)
@@ -168,6 +191,13 @@ class OrdersCancelled(OrderAdmin):
         qs = super(OrderAdmin, self).get_queryset(request)
         return qs.filter(status=2)
 
+    readonly_fields = [
+        "status",
+    ]
+
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 admin.site.register(CancelledOrders, OrdersCancelled)
 
@@ -182,6 +212,9 @@ class OrdersAccepted(OrderAdmin):
     def get_queryset(self, request):
         qs = super(OrderAdmin, self).get_queryset(request)
         return qs.filter(status=1, is_active=True)
+
+    def has_add_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(AcceptedOrders, OrdersAccepted)

@@ -12,7 +12,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import Brightness3Icon from '@material-ui/icons/Brightness2';
+import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2';
 import HomeIcon from "@material-ui/icons/Home";
 import Link from "@material-ui/core/Link";
 import PropTypes from "prop-types";
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   LogoImage: {
-    top:0,
+    top:5,
     height: 120,
     width:120,
     marginLeft: "0",
@@ -52,20 +52,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
-  navLogo: {
-    fontSize: theme.typography.h5.fontSize,
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-  navLogoImage: {
-    flexGrow: 1,
-    display: "block",
-    [theme.breakpoints.up("sm")]: {
-      display: "none",
-    },
-  },
+ 
+  
 }));
 
 function HeaderComponent(props) {
@@ -102,7 +90,6 @@ function HeaderComponent(props) {
             <Link
               underline="none"
               component="button"
-              className={classes.navLogo}
               onClick={() => handleRouteClick(routes.root)}
               color="inherit"
             >
@@ -112,16 +99,7 @@ function HeaderComponent(props) {
                 alt="null"
               />
             </Link>
-            <IconButton
-              edge="end"
-              aria-label="home"
-              aria-haspopup="true"
-              className={classes.navLogoImage}
-              onClick={() => handleRouteClick(routes.root)}
-              color="inherit"
-            >
-              <HomeIcon />
-            </IconButton>
+         
           </Typography>
           <div className={classes.root} />
           <div>
@@ -158,12 +136,7 @@ function HeaderComponent(props) {
            <span className="nav-button-text" color="textSecondary">Account</span>
            <AccountCircle className={classes.icons} />
         </MenuItem>
-        <MenuItem
-         style={{fontSize:15,fontWeight:"bolder"}}
-               onClick={handleLogout}>
-                        <span className="nav-button-text" color="textSecondary">Log Out</span>
-                        <ExitToAppIcon className={classes.icons} />
-                  </MenuItem  >
+     
        
       <MenuItem 
        style={{fontSize:15,fontWeight:"bolder"}}
@@ -178,7 +151,7 @@ function HeaderComponent(props) {
               {defaultTheme === "dark" ? (
                 <>
                   <span className="nav-button-text">Dark Mode</span>
-                <Brightness3Icon />
+                <Brightness2OutlinedIcon/>
                 </>
               
               ) : (
@@ -189,6 +162,12 @@ function HeaderComponent(props) {
               )}
      
         </MenuItem>
+        <MenuItem
+         style={{fontSize:15,fontWeight:"bolder"}}
+               onClick={handleLogout}>
+                        <span className="nav-button-text" color="textSecondary">Log Out</span>
+                        <ExitToAppIcon className={classes.icons} />
+                  </MenuItem  >
       </Menu>
      
     </div>

@@ -170,6 +170,7 @@ function CartComponent(props) {
               Menu Check
             </Typography>
             <Chip  label=" Previous Orders" clickable onClick={() => handleRouteClick(routes.account)} />
+          
           </Grid>
           
           <Grid item container spacing={2}>
