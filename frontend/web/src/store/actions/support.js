@@ -7,7 +7,7 @@ import {
     SUPPORT_FAIL
   } from "../actions/types";
 import axios from "axios";
-
+import { tokenConfig } from "../../utils";
 
   import {
     HELP_API ,
@@ -15,32 +15,31 @@ import axios from "axios";
   } from "../../api";
 
 
-export const Help = (credentials) => (dispatch) => {
+export const Help = (credentials) => (dispatch,getState) => {
+  const auth = getState().auth;
+  const accessToken = auth.access;
     // Start Loading the UI
     dispatch({
       type: UI_LOADING_START,
     });
     axios
-      .post(HELP_API, JSON.stringify(credentials), {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    .post(
+      HELP_API,
+      JSON.stringify(credentials),
+      tokenConfig(accessToken)
+    )
       .then((res) => {
-        if (res.status === 200) {
-          dispatch({
-            type: SUPPORT_SUCCESS,
-            payload: res.data,
-          });
-          //Show the alert
-          dispatch({
-            type: SHOW_ALERT_MESSAGE,
-            payload: {
-              text: "Query Submitted successfully.",
-              type: "success",
-            },
-          });
-        }
+        dispatch({
+          type: SHOW_ALERT_MESSAGE,
+          payload: {
+            text: "Success,wait for an email notification ",
+            type: "success",
+          },
+        });
+        dispatch({
+          type: SUPPORT_SUCCESS,
+          payload: res.data,
+        });
         // End Loading the UI
         dispatch({
           type: UI_LOADING_END,

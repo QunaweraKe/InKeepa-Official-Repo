@@ -166,7 +166,7 @@ function CartComponent(props) {
         <Grid container spacing={2}>
           <Grid item xs={12}>
         <BackButton/>
-            <Typography style={{fontWeight:"bold"}}variant="h4" align="center">
+            <Typography color="textSecondary" style={{fontWeight:"bold"}}variant="h3" align="center">
               Menu Check
             </Typography>
             <Chip  label=" Previous Orders" clickable onClick={() => handleRouteClick(routes.account)} />
@@ -229,10 +229,19 @@ function CartComponent(props) {
                 <CardContent className={classes.cardContent}>
                 <Divider />
                 <Typography style={{fontSize:25}}>Total Amount Payable</Typography>
-                <Typography style={{fontSize:15}}>
-                  
-                  {items.length} Item(s)</Typography>
+                
+                  {items.length > 0 ?( 
+                  < Typography>{items.length} Item(s)</Typography> 
+
+                  ):(
+                    <>
+                   <Typography>No  Item</Typography> 
+                    </>
+
+                  )} 
+                      {items.length > 0 && ( 
                   <Typography variant="h3">Ksh {CommaFunct(totalPrice)}</Typography>
+                      )}
                   <Divider />
                 </CardContent>
                 <CardActions>

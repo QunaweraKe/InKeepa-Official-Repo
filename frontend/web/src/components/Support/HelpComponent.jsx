@@ -44,8 +44,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const initialCredentials = {
-  name:null,
-  email: null,
   subject: null,
   description: null,
 
@@ -68,16 +66,17 @@ function HelpComponent(props) {
   const [credentials, setCrendentials] = React.useState(initialCredentials);
   const {  isUiLoading,  Help } = props;
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
   
     try
     {   
-     const { name ,email, subject,description} = credentials;
-    if (name && email  && subject && description) {
+     const {  subject,description} = credentials;
+    if ( subject && description) {
       Help(credentials);
-      setCrendentials('');
+      
     }
-  
+    setCrendentials('');
     return console.log("success")
   }
   catch (err) {
@@ -116,42 +115,14 @@ onSubmit={handleFormSubmit}
 Fill in all the fields below.
   </Typography>       
  
-  
-<TextField
-          focused
-            variant="filled"
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="Full Name"
-            name="name"
-            autoComplete="name"
-            autoFocus
-            onChange={handleInputChange}
-            color="secondary"
-          />
-          <TextField
-          focused
-            variant="filled"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            onChange={handleInputChange}
-            color="secondary"
-          />
+
           <TextField
            color="secondary"
             variant="filled"
             margin="normal"
             required
             focused
-            helperText="If it is an order kindly add the order ID for easier reference"
+            helperText="Incase of an order  add the ID for easier reference."
             fullWidth
             name="subject"
             label="Subject"
@@ -161,7 +132,8 @@ Fill in all the fields below.
             onChange={handleInputChange}
           />
        
-<TextField
+<TextField  
+ helperText="You will be contacted using your email address."
            color="secondary"
             variant="filled"
             margin="normal"

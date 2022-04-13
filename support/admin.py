@@ -7,8 +7,7 @@ from support.models import Help, Sales
 class HelpAdmin(admin.ModelAdmin):
     model = Help
     list_display = (
-        "name",
-        "email",
+        "sender",
         "subject",
         "description",
     )

@@ -6,8 +6,6 @@ class HelpSerializer(serializers.ModelSerializer):
     class Meta:
         model = Help
         fields = (
-            "name",
-            "email",
             "subject",
             "description",
         )

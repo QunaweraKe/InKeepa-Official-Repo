@@ -102,18 +102,24 @@ function OrdersComponent(props) {
               >
                 <div>
                
-                  <Typography variant="body2" color="textPrimary">
+                  <Typography variant="subtitle1" color="textPrimary">
                     Order ID &middot; {order.id}
                   </Typography>
-                  <Typography variant="body2" color="textSecondary">
+                  <Typography variant="subtitle1" color="textSecondary">
                     Table &middot; {order.table_id}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                   {dayjs(order.added_on).fromNow()}
                   </Typography>
              
                   {order.status === 0 &&   order.is_active === false
-                  ?(
+                  && (
                   
                     <Chip  label="Requested Cancellation" className={classestwo.chip}   style={{backgroundColor:'#5EE6EB'}} />
-                  ):(
+                  )}
+                  
+                  {order.status === 0 &&   order.is_active === true
+                  && (
                     <Chip  label="Pending" className={classestwo.chip}   style={{backgroundColor:'#C1F8CF'}} />
                   )
                   }
@@ -131,9 +137,7 @@ function OrdersComponent(props) {
                   }
                   <Typography variant="h4">Ksh.{CommaFunct(order.total_ammount)}</Typography>
                   
-                  <Typography variant="subtitle1" color="textSecondary">
-                  Ordered {dayjs(order.added_on).fromNow()}
-                  </Typography>
+             
                 </div>
               </AccordionSummary>
               <AccordionDetails className={classes.cardContent}>
