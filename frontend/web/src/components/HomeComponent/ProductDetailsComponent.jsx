@@ -84,7 +84,7 @@ export default function ProductDetailsComponent(props) {
             color="secondary"
             onClick={handleClose}
             aria-label="close"
-            variant="outlined"
+            variant="contained"
           >
             <ArrowBackIcon /><Typography>Back</Typography>
           </Button>

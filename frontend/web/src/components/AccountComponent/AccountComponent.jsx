@@ -73,6 +73,10 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 0,
     marginTop: theme.spacing(2),
   },
+  backButton:{
+    margin:theme.spacing(2)
+
+  }
 }));
 
 export default function AccountComponent() {
@@ -81,7 +85,7 @@ export default function AccountComponent() {
   return (
     <>
       <Container className={classes.root} maxWidth="md">
-        <BackButton/>
+        <BackButton className={classes.backButton}/>
         <Grid container spacing={2}>
           <Grid item xs={12} md={5}>
             <ProfileComponent classes={classes} />
