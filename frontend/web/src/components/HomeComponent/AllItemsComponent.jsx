@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   card: {
     // height: "100%",
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.light, 0.1),
+      backgroundColor: fade(theme.palette.secondary.light, 0.1),
     },
     display: "flex",
     flexDirection: "column",

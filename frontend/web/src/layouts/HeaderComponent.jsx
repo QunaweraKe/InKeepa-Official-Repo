@@ -116,7 +116,28 @@ function HeaderComponent(props) {
               <SettingsIcon />
             </IconButton>
             
-        
+            <IconButton
+       style={{fontSize:15,fontWeight:"bolder"}}
+        aria-label="theme switch"
+        className={classes.customHoverFocus}
+        onClick={() =>
+          toggleTheme(defaultTheme === "dark" ? "light" : "dark")
+          
+        }>
+          
+  
+              {defaultTheme === "dark" ? (
+                <>
+                <Brightness2OutlinedIcon/>
+                </>
+              
+              ) : (
+                <>
+                <WbSunnyIcon/>
+                </>
+              )}
+     
+        </IconButton>
           </div>
         </Toolbar>
       </AppBar>
@@ -138,30 +159,7 @@ function HeaderComponent(props) {
         </MenuItem>
      
        
-      <MenuItem 
-       style={{fontSize:15,fontWeight:"bolder"}}
-        aria-label="theme switch"
-        className={classes.customHoverFocus}
-        onClick={() =>
-          toggleTheme(defaultTheme === "dark" ? "light" : "dark")
-          
-        }>
-          
   
-              {defaultTheme === "dark" ? (
-                <>
-                  <span className="nav-button-text">Dark Mode</span>
-                <Brightness2OutlinedIcon/>
-                </>
-              
-              ) : (
-                <>
-                  <span className="nav-button-text">Light Mode</span>
-                <WbSunnyIcon/>
-                </>
-              )}
-     
-        </MenuItem>
         <MenuItem
          style={{fontSize:15,fontWeight:"bolder"}}
                onClick={handleLogout}>
