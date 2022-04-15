@@ -22,24 +22,12 @@ class User(AbstractUser):
     last_name = None
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["full_name", "username"]
 
     objects = CustomUserManager()
 
     def __str__(self):
         return self.email
 
-
-class User_Address(models.Model):
-    user = models.ForeignKey(User, related_name="addresses", on_delete=models.CASCADE)
-    state = models.ForeignKey("core.State", on_delete=models.CASCADE)
-    main_contact = PhoneNumberField()
-    alternate_contact = PhoneNumberField(null=True, blank=True)
-    added_on = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.user.email
-
     class Meta:
-        verbose_name = "Address"
-        verbose_name_plural = "Addresses"
+        verbose_name_plural = "ADMIN"

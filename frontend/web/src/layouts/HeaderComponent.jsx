@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   customHoverFocus: {
     "&:hover, &.Mui-focusVisible": { backgroundColor:"inherit" },
-    filter:"blur(.5px)",
+    filter:"blur(1px)",
     
   },
  icons:{
@@ -119,7 +119,6 @@ function HeaderComponent(props) {
             <IconButton
        style={{fontSize:15,fontWeight:"bolder"}}
         aria-label="theme switch"
-        className={classes.customHoverFocus}
         onClick={() =>
           toggleTheme(defaultTheme === "dark" ? "light" : "dark")
           
@@ -128,7 +127,7 @@ function HeaderComponent(props) {
   
               {defaultTheme === "dark" ? (
                 <>
-                <Brightness2OutlinedIcon/>
+                <Brightness2OutlinedIcon   className={classes.customHoverFocus}/>
                 </>
               
               ) : (

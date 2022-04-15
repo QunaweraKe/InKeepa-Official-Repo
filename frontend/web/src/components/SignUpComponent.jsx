@@ -170,7 +170,7 @@ onSubmit={handleFormSubmit}
             
             <Grid item >
           <Button
-               style={{fontSize:10,padding:5,marginTop:4,background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',}}
+               style={{marginLeft:2,fontSize:10,padding:5,marginTop:4,background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',}}
                 aria-label="toggle password visibility"
                 onClick={(e) => { setShowPassword(!showPassword) }}
                 className={classes.visibility}
@@ -196,7 +196,7 @@ onSubmit={handleFormSubmit}
                         onChange={handleCheckboxChange}
                       />
                     }
-                    label={<span style={{ fontSize: "10px", fontWeight: "bold", color: "grey" }}>Receive updates</span>}
+                    label={<span style={{ fontSize: "10px", fontWeight: "bold", color: "grey" }}>Receive Feature Updates</span>}
                   
                   />
                 </Grid>

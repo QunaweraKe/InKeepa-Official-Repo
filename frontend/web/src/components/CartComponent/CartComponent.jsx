@@ -151,6 +151,9 @@ function CartComponent(props) {
                 >
                   Remove  
                 </Button>
+                {item.available === false && (
+                   <Typography variant="body2" style={{marginTop:2}}> Not  available for order.</Typography>
+                   ) }
               </div>
             </div>
             <Divider />
@@ -245,10 +248,14 @@ function CartComponent(props) {
                   <Divider />
                 </CardContent>
                 <CardActions>
-                <Button       disabled={(items.length ? false : true) || isUiLoading}
-                variant="contained" color="secondary" onClick={handleClickOpen}>
-        Submit Order
-      </Button>
+                  
+                   <Button       disabled={(items.length ? false : true) || isUiLoading}
+                          variant="contained" color="secondary" onClick={handleClickOpen}>
+                  Submit Order
+                </Button>
+              
+             
+          
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
       <form
 className={classes.form}

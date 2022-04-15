@@ -152,7 +152,7 @@ onSubmit={handleFormSubmit}
           />
            <Grid item >
         <Button
-               style={{fontSize:10,padding:5,marginTop:4,background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',}}
+               style={{marginLeft:2,fontSize:10,padding:5,marginTop:4,background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',}}
                 aria-label="toggle password visibility"
                 onClick={(e) => { setShowPassword(!showPassword) }}
                 className={classes.visibility}
