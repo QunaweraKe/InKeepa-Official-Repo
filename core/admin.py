@@ -4,7 +4,7 @@ from django.db import models
 from django.forms import TextInput, Textarea
 from core.models import Shop, Item, Cart, Order, Category
 from django.contrib.auth.models import Group
-
+from django.contrib import messages
 
 admin.site.unregister(Group)
 
@@ -43,6 +43,7 @@ class ItemAdmin(admin.ModelAdmin):
 
     def make_available_selected_post(modeladmin, request, queryset):
         queryset.update(available=True)
+        messages.success(request, "Selected Items Made Available.")
 
     make_available_selected_post.short_description = "Make Item(s) Available"
     search_fields = ("name",)
