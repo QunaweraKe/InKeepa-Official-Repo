@@ -86,6 +86,10 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def autocomplete_search_fields():
+        return "name", "description"
+
     class Meta:
         verbose_name_plural = "Items/Products"
 

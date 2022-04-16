@@ -18,6 +18,11 @@ class User(AbstractUser):
     full_name = models.CharField(max_length=100, null=True, blank=True)
     username = models.CharField(max_length=100, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    is_staff = models.BooleanField(
+        ("staff status"),
+        default=False,
+        help_text=("Designates whether the user can log into this admin " "site."),
+    )
     first_name = None
     last_name = None
 
@@ -31,3 +36,7 @@ class User(AbstractUser):
 
     class Meta:
         verbose_name_plural = "ADMIN"
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return "username", "email"

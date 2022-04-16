@@ -46,7 +46,7 @@ class ItemAdmin(admin.ModelAdmin):
         messages.success(request, "Selected Items Made Available.")
 
     make_available_selected_post.short_description = "Make Item(s) Available"
-    search_fields = ("name",)
+    search_fields = ("name", "description")
     formfield_overrides = {
         models.CharField: {"widget": Textarea(attrs={"rows": 5, "cols": 60})},
     }
