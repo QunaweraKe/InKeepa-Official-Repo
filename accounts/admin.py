@@ -93,7 +93,7 @@ admin.site.register(Customer, CustomerAdmin)
 class DeletedAccounts(User):
     class Meta:
         proxy = True
-        verbose_name_plural = "DELETED ACCOUNTS/INACTIVE"
+        verbose_name_plural = "INACTIVE/DELETED"
 
 
 class DeletedAdmin(CustomUserAdmin):

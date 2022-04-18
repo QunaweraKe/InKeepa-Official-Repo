@@ -145,7 +145,7 @@ function AllItemsComponent(props) {
                 />
 
                   {cartItems.includes(item.id) && (
-                      <Chip  label="Picked" className={classes.chip}/>
+                      <Chip  label={"Selected"} className={classes.chip}/>
                       
                   )}
                   
@@ -227,6 +227,14 @@ function AllItemsComponent(props) {
               </CardContent>
             
             </Card>
+            <CardActions>
+            <ProductDetailsComponent
+                item={item}
+                buyNow={() => handleBuyNow(item.id)}
+                isUiLoading={isUiLoading}
+              />
+            </CardActions>
+          
             
               </>
               

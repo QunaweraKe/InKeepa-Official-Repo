@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const initialCredentials = {
   subject: null,
   description: null,
+  orderId:null,
 
 };
 
@@ -71,8 +72,8 @@ function HelpComponent(props) {
   
     try
     {   
-     const {  subject,description} = credentials;
-    if ( subject && description) {
+     const { orderId,subject,description} = credentials;
+    if (orderId &&  subject &&  description) {
       Help(credentials);
       
     }
@@ -101,7 +102,7 @@ function HelpComponent(props) {
         Need Help?
       </Button>
       <Dialog fullWidth maxWidth="xs" classes={{paper:classes.paper}} open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-    <Typography color="textSecondary" style={{fontWeight:"bold"}} variant ="h3">Help Center</Typography>
+    <Typography color="textSecondary" style={{fontWeight:"bold"}} variant ="subtitle1">Help Center</Typography>
         <DialogContent>
 
 
@@ -113,16 +114,15 @@ onSubmit={handleFormSubmit}
 >  
 <Typography variant="subtitle2">
 Fill in all the fields below.
-  </Typography>       
- 
 
-          <TextField
+  </Typography>       
+  <i>You will be contacted using email address associated to this account.</i>
+  <TextField
            color="secondary"
             variant="filled"
             margin="normal"
             required
             focused
-            helperText="Incase of an order  add the ID for easier reference."
             fullWidth
             name="subject"
             label="Subject"
@@ -131,9 +131,23 @@ Fill in all the fields below.
             autoComplete="subject"
             onChange={handleInputChange}
           />
+
+          <TextField
+           color="secondary"
+            variant="filled"
+            margin="normal"
+            focused
+            helperText="Incase of an order  add the ID for easier reference else leave blank."
+            fullWidth
+            name="orderId"
+            label="Order ID"
+            type="text"
+            id="orderId"
+            onChange={handleInputChange}
+          />
        
 <TextField  
- helperText="You will be contacted using your email address."
+
            color="secondary"
             variant="filled"
             margin="normal"

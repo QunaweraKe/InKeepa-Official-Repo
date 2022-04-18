@@ -6,6 +6,7 @@ from core.models import Shop, Item, Cart, Order, Category
 from django.contrib.auth.models import Group
 from django.contrib import messages
 
+
 admin.site.unregister(Group)
 
 

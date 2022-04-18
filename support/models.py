@@ -20,6 +20,8 @@ class Sales(models.Model):
 
 class Help(models.Model):
     sender = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    orderId = models.CharField(max_length=150)
+    resolved = models.BooleanField(default=False)
     subject = models.CharField(max_length=150)
     description = models.CharField(max_length=1500)
     created_on = models.DateTimeField(auto_now_add=True)

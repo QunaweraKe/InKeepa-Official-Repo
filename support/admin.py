@@ -7,6 +7,8 @@ from support.models import Help, Sales
 class HelpAdmin(admin.ModelAdmin):
     model = Help
     list_display = (
+        "resolved",
+        "orderId",
         "sender",
         "subject",
         "description",

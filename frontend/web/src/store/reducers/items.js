@@ -1,4 +1,4 @@
-import { GET_ITEMS } from "../actions/types";
+import { GET_ITEMS,SEARCH_ITEMS } from "../actions/types";
 
 const initialState = {
   items: [],
@@ -6,6 +6,12 @@ const initialState = {
 
 export default function itemsReducer(state = initialState, action) {
   switch (action.type) {
+    case SEARCH_ITEMS:
+      return {
+        ...state,
+        items: action.payload,
+      };
+
     case GET_ITEMS:
       return {
         ...state,

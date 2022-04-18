@@ -38,4 +38,3 @@ else{
   return( `${process.env.REACT_APP_BACKEND_API}/${url}/`);
 
 }
-export const SEARCH_LIST_API = `${process.env.REACT_APP_BACKEND_API}/search/`;

@@ -33,6 +33,7 @@ export const GET_ORDERS = "GET_ORDERS";
 
 export const CREATE_ORDER = "CREATE_ORDER";
 export const CANCEL_ORDER = "CANCEL_ORDER";
+export const SEARCH_ITEMS = "SEARCH_ITEMS";
 
 export const GET_ERRORS = "GET_ERRORS";
 export const CREATE_ERROR_MESSAGE = "CREATE_ERROR_MESSAGE";

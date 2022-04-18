@@ -170,7 +170,7 @@ function CartComponent(props) {
           <Grid item xs={12}>
         <BackButton/>
             <Typography color="textSecondary" style={{fontWeight:"bold"}}variant="h3" align="center">
-              Menu Check
+              Menu Selection
             </Typography>
             <Chip  label=" Previous Orders" clickable onClick={() => handleRouteClick(routes.account)} />
           
@@ -198,9 +198,9 @@ function CartComponent(props) {
                         onClick={handleEmptyCart}
                         variant="contained"
                         disabled={isUiLoading}
-                        style={{fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
+                        style={{width:150,fontSize:12,fontWeight:"bold",backgroundColor:"#FF1818",}}
                       >
-                        Clear All
+                        Clear Menu
                       </Button>
                     ):(
                       <></>
