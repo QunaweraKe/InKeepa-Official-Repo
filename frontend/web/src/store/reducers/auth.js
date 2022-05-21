@@ -52,11 +52,6 @@ export default function authReducer(state = initialState, action) {
     case SIGNIN_FAIL:
     case SIGNUP_FAIL:
     case SIGNOUT_SUCCESS:
-      return{
-        ...state,
-        isAuthenticated:false,
-        isLoading:false,
-      };
     case USER_LOADING_FAIL:
     case UNAUTHORIZED_ACCESS:
     case USER_DEACTIVATED:

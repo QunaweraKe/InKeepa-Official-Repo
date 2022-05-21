@@ -1,5 +1,30 @@
+import axios from 'axios';
+
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+
+const api = async (descriptor, nextUrl = null) => {
+  const desc = descriptor;
+  if (nextUrl) {
+    desc.url = nextUrl;
+  }
+  const { data } = await axios(desc);
+  return data;
+};
+
+export default api;
+
+export const descriptor = {
+getSearch: (searchString) => ({
+  method: 'get',
+  url: `${process.env.REACT_APP_BACKEND_API}/search=${searchString}/`,
+}),
+};
+
 export const SIGNIN_API = `${process.env.REACT_APP_BACKEND_API}/signin/`;
 export const SIGNUP_API = `${process.env.REACT_APP_BACKEND_API}/signup/`;
+
+
 export const SIGNOUT_API = `${process.env.REACT_APP_BACKEND_API}/signout/`;
 export const SALES_API = `${process.env.REACT_APP_BACKEND_API}/salesapi/`;
 export const HELP_API = `${process.env.REACT_APP_BACKEND_API}/helpapi/`;

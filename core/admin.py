@@ -129,7 +129,7 @@ class OrderAdmin(admin.ModelAdmin):
 class OrdersToday(Order):
     class Meta:
         proxy = True
-        verbose_name_plural = "Orders Today"
+        verbose_name_plural = "Orders Pending Today"
 
 
 class OrdersByDay(OrderAdmin):

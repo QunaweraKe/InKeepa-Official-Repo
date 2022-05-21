@@ -16,7 +16,6 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 
-
 //local imports
 import ProductDetailsComponent from "./ProductDetailsComponent";
 import NoImage from "../../assets/img/oops-no-image.jpg";
@@ -106,7 +105,10 @@ function AllItemsComponent(props) {
   
   const handleBuyNow = (itemId) => {
     createOrder([itemId]);
+
   };
+  
+
   var cardStyle = {
     display: 'block',
     transitionDuration: '0.3s',
@@ -190,12 +192,14 @@ function AllItemsComponent(props) {
                       disabled={isUiLoading}
                       style={{fontSize:12,fontWeight:"bold"}}
                     >
-                      Add to Menu
+                  Add to Menu
                     </Button>
                       
                      </>
                   )}
-                      
+              
+          
+       
               <ProductDetailsComponent
                 item={item}
                 buyNow={() => handleBuyNow(item.id)}
@@ -228,6 +232,8 @@ function AllItemsComponent(props) {
             
             </Card>
             <CardActions>
+
+          
             <ProductDetailsComponent
                 item={item}
                 buyNow={() => handleBuyNow(item.id)}
@@ -256,6 +262,7 @@ AllItemsComponent.propTypes = {
   removeItemFromCart: PropTypes.func.isRequired,
   createOrder: PropTypes.func.isRequired,
   isUiLoading: PropTypes.bool.isRequired,
+  buyNow: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -8,7 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
@@ -36,15 +35,12 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight:"80%"
   },
-  buyNowButton: {
-    maxWidth: "15rem",
-    margin: "1em auto",
-  },
+
 }));
 
 export default function ProductDetailsComponent(props) {
  
-  const { item, buyNow,isUiLoading } = props;
+  const { item,isUiLoading } = props;
   const classes = useStyles();
   dayjs.extend(relativeTime);
 
@@ -112,28 +108,16 @@ export default function ProductDetailsComponent(props) {
                 <Typography variant="body">{item.description}</Typography>
              
               </div>
-
+              <Typography color="textSecondary"  align="center" style={{fontWeight:"bolder",fontSize:32,marginBottom:5,}}variant="h3">Ksh {item.price}</Typography>
               
              
               
             </Grid>
+      
           </Grid>
         </DialogContent>
-        <Typography color="textSecondary"  align="center" style={{fontWeight:"bolder",fontSize:28,marginTop:5,}}variant="h3">Ksh {item.price}</Typography>
-        <DialogActions className={classes.buyNowButton}>
-             
-             <Button
-               size="small"
-               color="secondary"
-               fullWidth
-               variant="contained"
-               onClick={buyNow}
-               disabled={isUiLoading}
-             >
-               Order Now
-             </Button>
-           
-           </DialogActions>
+
+     
    
       </Dialog>
     </>
@@ -142,5 +126,5 @@ export default function ProductDetailsComponent(props) {
 
 ProductDetailsComponent.propType = {
   item: PropTypes.object.isRequired,
-  buyNow: PropTypes.func.isRequired,
+
 };

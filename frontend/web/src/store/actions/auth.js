@@ -126,6 +126,7 @@ export const signIn = (email, password) => (dispatch) => {
       }
     )
     .then((res) => {
+      
       if (res.status === 200) {
         dispatch({
           type: SIGNIN_SUCCESS,
@@ -140,7 +141,7 @@ export const signIn = (email, password) => (dispatch) => {
       dispatch({
         type: SHOW_ALERT_MESSAGE,
         payload: {
-          text: " Glad To See You Back",
+          text: "You are now logged in  :) ",
           type: "success",
         },
       });

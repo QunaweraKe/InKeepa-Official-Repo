@@ -1,7 +1,7 @@
 import React from "react";
 import Fab from '@material-ui/core/Fab';
 import Badge from "@material-ui/core/Badge";
-import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles } from "@material-ui/core/styles"; 
 import { useHistory } from "react-router";
 import PropTypes from "prop-types";
@@ -47,7 +47,7 @@ function FloatingAction(props) {
                 }}
                 badgeContent={itemsCountInCart}
                  color="secondary">
-                  <RestaurantMenuIcon  />
+                  <ChevronRightIcon  />
                 </Badge>
 
   </Fab>
