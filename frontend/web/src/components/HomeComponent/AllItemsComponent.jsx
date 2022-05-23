@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
   },
   pricetag:{
-    color:theme.palette.grey[500]
+    color:theme.palette.grey[1000]
   }
 }));
 
@@ -154,7 +154,7 @@ function AllItemsComponent(props) {
                   
            
                 <CardContent className={classes.cardContent}>
-                  <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
+                  <Typography className={classes.pricetag} gutterBottom variant="h3" component="h2">
                     Ksh. {CommaFunct(item.price)}
                   </Typography>
                   <Divider/>
@@ -221,7 +221,7 @@ function AllItemsComponent(props) {
               />
               <Chip  label="Currently Unavailable" className={classes.chip}/>
               <CardContent className={classes.cardContent}>
-                <Typography className={classes.pricetag} gutterBottom variant="h5" component="h2">
+                <Typography className={classes.pricetag} gutterBottom variant="h3" component="h2">
                   Ksh. {item.price.toLocaleString()}
                 </Typography>
                 <Divider/>
@@ -262,7 +262,7 @@ AllItemsComponent.propTypes = {
   removeItemFromCart: PropTypes.func.isRequired,
   createOrder: PropTypes.func.isRequired,
   isUiLoading: PropTypes.bool.isRequired,
-  buyNow: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = (state) => ({

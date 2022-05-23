@@ -50,7 +50,10 @@ class Category(models.Model):
 
 
 class Item(models.Model):
-    category = models.ForeignKey("core.Category", on_delete=models.CASCADE)
+    category = models.ManyToManyField(
+        "core.Category",
+        related_name="categories",
+    )
     on_offer = models.BooleanField(default=False)
     name = models.CharField(max_length=50)
     description = models.CharField(
@@ -76,8 +79,8 @@ class Item(models.Model):
 
         try:
             image_var = Image.open(self.image.path)
-            if image_var.height > 450 or image_var.width > 450:
-                output = (450, 450)
+            if image_var.height > 250 or image_var.width > 250:
+                output = (250, 250)
                 image_var.thumbnail(output)
                 image_var.save(self.image.path)
         except:

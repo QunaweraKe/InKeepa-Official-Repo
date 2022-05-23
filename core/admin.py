@@ -1,11 +1,11 @@
 from django.contrib import admin
 import datetime
 from django.db import models
-from django.forms import TextInput, Textarea
+from django.forms import Textarea
 from core.models import Shop, Item, Cart, Order, Category
 from django.contrib.auth.models import Group
 from django.contrib import messages
-
+from django.utils.safestring import mark_safe
 
 admin.site.unregister(Group)
 
@@ -22,6 +22,15 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
+    def item_image(self, obj):
+        return mark_safe(
+            '<img src="{url}" width="{width}" height={height} />'.format(
+                url=obj.image.url,
+                width=obj.image.width,
+                height=obj.image.height,
+            )
+        )
+
     def get_actions(self, request):
         actions = super(ItemAdmin, self).get_actions(request)
         if request.user.is_superuser != False:
@@ -52,12 +61,23 @@ class ItemAdmin(admin.ModelAdmin):
         models.CharField: {"widget": Textarea(attrs={"rows": 5, "cols": 60})},
     }
 
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return [
+                "item_image",
+            ]
+        else:
+            return []
+
+    exclude = [
+        "added_by",
+    ]
+    date_hierarchy = "added_on"
     list_display = (
         "id",
-        "category_id",
+        "category_display",
         "name",
         "short_description",
-        "image",
         "price",
         "available",
         "on_offer",
@@ -65,6 +85,7 @@ class ItemAdmin(admin.ModelAdmin):
         "added_by",
         "added_on",
         "updated_on",
+        "image",
     )
     actions = [
         "delete_selected_post",
@@ -72,9 +93,16 @@ class ItemAdmin(admin.ModelAdmin):
         "make_available_selected_post",
     ]
 
-    def save_model(self, request, obj, change, form):
-        obj.user = request.user
-        return super(ItemAdmin, self).save_model(request, obj, form, change)
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            # Only set added_by during the first save.
+            obj.added_by = request.user
+        super().save_model(request, obj, form, change)
+
+    def category_display(self, obj):
+        return "\n".join([child.name for child in obj.category.all()])
+
+    category_display.short_description = "Category"
 
 
 @admin.register(Cart)
@@ -101,6 +129,7 @@ class OrderAdmin(admin.ModelAdmin):
             del actions["delete_selected"]
         return actions
 
+    date_hierarchy = "added_on"
     list_display = (
         "id",
         "get_items",

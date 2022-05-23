@@ -108,7 +108,7 @@ export default function ProductDetailsComponent(props) {
                 <Typography variant="body">{item.description}</Typography>
              
               </div>
-              <Typography color="textSecondary"  align="center" style={{fontWeight:"bolder",fontSize:32,marginBottom:5,}}variant="h3">Ksh {item.price}</Typography>
+              <Typography  align="center" style={{fontWeight:"bolder",marginBottom:5,}}variant="h3">Ksh {item.price}</Typography>
               
              
               
