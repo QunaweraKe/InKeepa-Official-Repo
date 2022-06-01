@@ -12,7 +12,17 @@ admin.site.unregister(Group)
 
 @admin.register(Shop)
 class ShopAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "added_on", "user")
+    exclude = [
+        "user",
+    ]
+
+    list_display = ("id", "user", "name", "added_on")
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            # Only set added_by during the first save.
+            obj.user = request.user
+        super().save_model(request, obj, form, change)
 
 
 @admin.register(Category)
@@ -80,7 +90,7 @@ class ItemAdmin(admin.ModelAdmin):
         "short_description",
         "price",
         "available",
-        "on_offer",
+        "special_offer",
         "shop",
         "added_by",
         "added_on",
@@ -109,7 +119,6 @@ class ItemAdmin(admin.ModelAdmin):
 class CartAdmin(admin.ModelAdmin):
     list_display = (
         "id",
-        "user",
         "get_items",
         "added_on",
         "total_ammount",
@@ -129,15 +138,14 @@ class OrderAdmin(admin.ModelAdmin):
             del actions["delete_selected"]
         return actions
 
-    date_hierarchy = "added_on"
     list_display = (
         "id",
+        "user",
         "get_items",
         "orders_count",
         "total_ammount",
         "table_id",
         "is_active",
-        "user",
         "status",
         "added_on",
     )

@@ -1,8 +1,9 @@
 import axios from "axios";
 
-import { ITEMS_LIST_API,SEARCH_LIST_API } from "../../api";
+import { ITEMS_LIST_API,SEARCH_LIST_API ,SPECIAL_LIST_API} from "../../api";
 import {
   SEARCH_ITEMS,
+  GET_SPECIAL_ITEMS,
   GET_ITEMS,
   UI_LOADING_START,
   UI_LOADING_END,

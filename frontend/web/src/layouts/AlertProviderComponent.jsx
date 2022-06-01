@@ -2,6 +2,7 @@ import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
+import { Slide } from '@material-ui/core';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -20,6 +21,7 @@ function AlertProviderComponent(props) {
         vertical: "bottom",
         horizontal: "left",
       }}
+      TransitionComponent={Slide}
       open={Boolean(alertMessage.text)}
       autoHideDuration={2000}
       onClose={handleClose}

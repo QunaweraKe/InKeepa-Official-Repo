@@ -80,7 +80,7 @@ export const addItemToCart = (itemId) => (dispatch, getState) => {
       dispatch({
         type: SHOW_ALERT_MESSAGE,
         payload: {
-          text: "Added To Menu",
+          text: "ADDED",
           type: "success",
         },
       });

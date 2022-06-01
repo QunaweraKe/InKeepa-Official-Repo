@@ -44,10 +44,7 @@ class UserSignUpSerializer(serializers.ModelSerializer):
             "password1",
             "password2",
         ]
-        read_only_fields = (
-            "full_name",
-            "username",
-        )
+        read_only_fields = ("full_name",)
         extra_kwargs = {
             "password1": {"write_only": True},
             "password2": {"write_only": True},
@@ -55,12 +52,13 @@ class UserSignUpSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         email = validated_data.get("email")
+        username = validated_data.get("username")
         is_nursery = validated_data.get("is_nursery")
         password1 = validated_data.get("password1")
         password2 = validated_data.get("password2")
 
         if password1 == password2:
-            user = User(email=email, is_nursery=is_nursery)
+            user = User(email=email, username=username, is_nursery=is_nursery)
             user.set_password(password1)
             user.save()
             return user

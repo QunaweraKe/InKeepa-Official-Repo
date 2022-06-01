@@ -33,7 +33,7 @@ class State(models.Model):
 class Shop(models.Model):
     name = models.CharField(max_length=50)
     added_on = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
@@ -54,7 +54,7 @@ class Item(models.Model):
         "core.Category",
         related_name="categories",
     )
-    on_offer = models.BooleanField(default=False)
+    special_offer = models.BooleanField(default=False)
     name = models.CharField(max_length=50)
     description = models.CharField(
         max_length=1000, editable=True, verbose_name="Description"
@@ -104,7 +104,7 @@ class Cart(models.Model):
     user = models.OneToOneField(User, related_name="cart", on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.email
+        return self.user.username
 
     @cached_property
     def total_ammount(self):

@@ -16,7 +16,7 @@ class User(AbstractUser):
 
     # Optional fields
     full_name = models.CharField(max_length=100, null=True, blank=True)
-    username = models.CharField(max_length=100, null=True, blank=True)
+    username = models.CharField(unique=True, max_length=100, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     first_name = None
     last_name = None
@@ -27,7 +27,7 @@ class User(AbstractUser):
     objects = CustomUserManager()
 
     def __str__(self):
-        return self.email
+        return self.username
 
     class Meta:
         verbose_name_plural = "ADMIN"

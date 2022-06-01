@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import Carousel from 'react-material-ui-carousel'
 
 //material Ui
 import Button from "@material-ui/core/Button";
@@ -125,7 +126,6 @@ function AllItemsComponent(props) {
             
             <Typography className={classes.top} color="textSecondary" variant="h3">Today's Menu</Typography>
           </Grid>
-
      
           {items.map((item, index) => (
             <Grid
@@ -154,7 +154,7 @@ function AllItemsComponent(props) {
                   
            
                 <CardContent className={classes.cardContent}>
-                  <Typography className={classes.pricetag} gutterBottom variant="h3" component="h2">
+                  <Typography className={classes.pricetag} gutterBottom variant="subtitle1" component="h2">
                     Ksh. {CommaFunct(item.price)}
                   </Typography>
                   <Divider/>
@@ -221,7 +221,7 @@ function AllItemsComponent(props) {
               />
               <Chip  label="Currently Unavailable" className={classes.chip}/>
               <CardContent className={classes.cardContent}>
-                <Typography className={classes.pricetag} gutterBottom variant="h3" component="h2">
+                <Typography className={classes.pricetag} gutterBottom variant="subtitle1" component="h2">
                   Ksh. {item.price.toLocaleString()}
                 </Typography>
                 <Divider/>

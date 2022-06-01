@@ -20,7 +20,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Copyright from "../layouts/Copyright";
 import { signUp } from "../store/actions/auth";
 import { routes } from "../Routes";
-import  TermsOfService  from "./TermsAndPrivacyComponent/TermsOfService";
+
 
 
 
@@ -62,6 +62,8 @@ const initialCredentials = {
   email: null,
   password1: null,
   password2: null,
+  username:null,
+
 };
 
 
@@ -78,10 +80,11 @@ function SignUpComponent(props) {
     e.preventDefault();
 
     // submit the form
-    const { email, password1, password2 } = crendentials;
-    if (email && password1 && password1 === password2) {
+  const { email, username,password1, password2} = crendentials;
+    if (email && username && password1 && password1 === password2) {
       signUp(crendentials);
     }
+    console.log(e.target[0].value)
   };
   const handleInputChange = (e) => {
     // Set the values into current state
@@ -109,7 +112,6 @@ history.push(route);
     {isAuthenticated && <Redirect to="/" />}
       <CssBaseline />
       <div className={classes.paper}>
-   
   
         <img
 className={classes.LogoImage}
@@ -123,6 +125,20 @@ className={classes.form}
 noValidate
 onSubmit={handleFormSubmit}
 >
+<TextField
+          focused
+            variant="filled"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            onChange={handleInputChange}
+            color="secondary"
+          />
           <TextField
           focused
             variant="filled"

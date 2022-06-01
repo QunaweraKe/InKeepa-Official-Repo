@@ -142,7 +142,7 @@ function ProfileComponent(props) {
                           disabled={!isEditEnabled}
                           onClick={handleToggleEditButton}
                         >
-                          Cancel
+                          Back
                         </Button>
                       </Grid>
                       <Grid item xs={12} md={6}>

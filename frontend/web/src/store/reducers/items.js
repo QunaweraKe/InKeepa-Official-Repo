@@ -1,4 +1,4 @@
-import { GET_ITEMS,SEARCH_ITEMS } from "../actions/types";
+import { GET_ITEMS,SEARCH_ITEMS ,GET_SPECIAL_ITEMS} from "../actions/types";
 
 const initialState = {
   items: [],
@@ -17,6 +17,7 @@ export default function itemsReducer(state = initialState, action) {
         ...state,
         items: action.payload,
       };
+
     default:
       return state;
   }
