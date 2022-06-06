@@ -192,7 +192,7 @@ function AllItemsComponent(props) {
                       disabled={isUiLoading}
                       style={{fontSize:12,fontWeight:"bold"}}
                     >
-                  Add to Menu
+                  Select
                     </Button>
                       
                      </>

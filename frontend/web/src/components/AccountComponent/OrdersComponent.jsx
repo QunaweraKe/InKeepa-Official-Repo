@@ -15,6 +15,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionActions from "@material-ui/core/AccordionActions";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import LinearProgress from '@material-ui/core/LinearProgress';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -38,7 +39,10 @@ const useStyles = makeStyles((theme) => ({
   },
   subtitle:{
     color:theme.palette.grey[100]
-  }
+  },
+  root: {
+    width: '20%',
+  },
 }))
 
 function OrdersComponent(props) {
@@ -62,6 +66,33 @@ function OrdersComponent(props) {
   const handleOpenDialog = () => {
     setDialogOpen(true);
   };
+  const [progress, setProgress] = React.useState(10);
+  const [buffer, setBuffer] = React.useState(20);
+
+  const progressRef = React.useRef(() => {});
+  React.useEffect(() => {
+    progressRef.current = () => {
+      if (progress > 100) {
+        setProgress(20);
+        setBuffer(100);
+      } else {
+        const diff = Math.random() * 20;
+        const diff2 = Math.random() * 20;
+        setProgress(progress + diff);
+        setBuffer(progress + diff + diff2);
+      }
+    };
+  });
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      progressRef.current();
+    }, 2000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   const renderSingleOrder = (items) => {
     return items
@@ -114,13 +145,38 @@ function OrdersComponent(props) {
              
                   {order.status === 0 &&   order.is_active === false
                   && (
-                  
-                    <Chip  label="Requested Cancellation" className={classestwo.chip}   style={{backgroundColor:'#5EE6EB'}} />
-                  )}
+                  <>
+                  <Grid container spacing={8}>
+                  <Grid item xs={4}>
+                    <Chip  label="Cancel Request" className={classestwo.chip}   style={{backgroundColor:'#5EE6EB'}} />
+             </Grid>
+             <Grid item xs={8}>
+                    <span className={classes.root}>
+                    <Typography variant="caption" style={{fontFamily:"monospace"}}>Waiting Confirmation</Typography>
+    <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+  
+  </span>   
+  </Grid>
+  </Grid>
+  </>)}
                   
                   {order.status === 0 &&   order.is_active === true
                   && (
+                    <>
+                     <Grid container spacing={2}>
+                  <Grid item xs={4}>
                     <Chip  label="Pending" className={classestwo.chip}   style={{backgroundColor:'#C1F8CF'}} />
+                    </Grid>
+                    <Grid item xs={8}>
+                    <span className={classes.root}>
+                      <Typography variant="caption" style={{fontFamily:"monospace"}}>Waiting Response</Typography>
+      <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} />
+    
+    </span>
+
+    </Grid>
+    </Grid>
+    </>
                   )
                   }
                  {order.status === 1

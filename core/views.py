@@ -180,7 +180,7 @@ class ItemsListAPIView(ListAPIView):
 
     serializer_class = ItemSerializer
     permission_classes = (IsAuthenticated,)
-    queryset = Item.objects.filter(soft_delete=False).order_by("-added_on")
+    queryset = Item.objects.filter(soft_delete=False).order_by("-available")
 
 
 class ItemsCreateAPIView(CreateAPIView):

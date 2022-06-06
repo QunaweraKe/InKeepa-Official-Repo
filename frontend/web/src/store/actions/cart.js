@@ -80,7 +80,7 @@ export const addItemToCart = (itemId) => (dispatch, getState) => {
       dispatch({
         type: SHOW_ALERT_MESSAGE,
         payload: {
-          text: "ADDED",
+          text: "Added to menu",
           type: "success",
         },
       });
@@ -134,7 +134,7 @@ export const removeItemFromCart = (itemId) => (dispatch, getState) => {
       dispatch({
         type: SHOW_ALERT_MESSAGE,
         payload: {
-          text: "Removed From Menu",
+          text: "Removed from menu",
           type: "success",
         },
       });
